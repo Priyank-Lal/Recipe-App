@@ -28,7 +28,4 @@ coverage/
 *.sln
 *.sw?
 
-# Optional: lockfiles if you're not using all package managers
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+

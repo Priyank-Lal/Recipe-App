@@ -40,7 +40,7 @@ const CreateRecipe = () => {
     copyData.push(recipe)
     setData(copyData)
     localStorage.setItem('Recipes',JSON.stringify(copyData))
-    toast.success("New Recipe Added!");
+    toast.success("New Recipe Added!")
     navigateTo("/recipes");
     reset();
   };
@@ -63,7 +63,7 @@ const CreateRecipe = () => {
                 label="Recipe Title"
                 variant="outlined"
                 {...register("title")}
-                required={false}
+                required={true}
               />
               <TextField
                 className="w-full text-[#text-green-700]"
@@ -72,14 +72,14 @@ const CreateRecipe = () => {
                 label="Chef's Name"
                 variant="outlined"
                 {...register("chef")}
-                required={false}
+                required={true}
               />
               <div className="flex flex-col gap-1">
                 <label className="text-lg text-gray-700">Description</label>
                 <textarea
                   className="w-full border rounded after:text-red-300 h-32"
                   {...register("description")}
-                  required={false}
+                  required={true}
                 ></textarea>
               </div>
               <div className="flex flex-col gap-1">
@@ -89,7 +89,7 @@ const CreateRecipe = () => {
                 <textarea
                   className="w-full border rounded after:text-red-300 h-32"
                   {...register("ingredients")}
-                  required={false}
+                  required={true}
                 ></textarea>
               </div>
               <div className="flex flex-col gap-1">
@@ -99,7 +99,7 @@ const CreateRecipe = () => {
                 <textarea
                   className="w-full border rounded after:text-red-300 h-32"
                   {...register("instructions")}
-                  required={false}
+                  required={true}
                 ></textarea>
               </div>
               <div className="w-full">
@@ -126,7 +126,7 @@ const CreateRecipe = () => {
               </div>
               <div className="flex gap-4 mt-8">
                 <Button color="success" variant="contained" type="submit">
-                  Sub it
+                  Submit
                 </Button>
                 <Button
                   color="error"

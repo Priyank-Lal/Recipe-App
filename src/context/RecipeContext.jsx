@@ -22,25 +22,6 @@ const RecipeContext = ({ children }) => {
       cuisine: "Italian",
     },
     {
-      id: "2",
-      title: "Burger",
-      ingredients:
-        "Tofu, cubed Broccoli florets Carrot sliced Bell pepper sliced Soy sauce Ginge minced Garli minced Sesame oil Cooked rice for serving",
-      instructions:
-        "In a wok, heat sesame oil over medium-high heat.Add minced ginger and garlic, sauté until fragrant.Add cubed tofu and stir-fry until golden brown.Add broccoli, carrots, and bell peppers. Cook until vegetables are tender-crisp.Pour soy sauce over the stir-fry and toss to combine.Serve over cooked rice.",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfg9B6xzfanVTpi-C4uuDtjNfBxtZA9KA57w&s",
-      category: "Lunch",
-      chef: "Alfredo D. Stephen",
-      description:
-        "Healthy tofu and veggie stir-fry for a quick and satisfying meal.",
-      duration: "30 mins",
-      rating: 4.7,
-      reviewCount: 256,
-      taste: "Savory",
-      cuisine: "Asian",
-    },
-    {
       id: "3",
       title: "Chocolate Chip Cookies",
       ingredients:

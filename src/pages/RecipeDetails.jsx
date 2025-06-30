@@ -125,21 +125,24 @@ const RecipeDetails = () => {
           </div>
 
           <div>
-            <ul className="list-disc pl-6 space-y-1 text-gray-700">
+            <h2 className="text-2xl font-semibold text-green-700 mb-2">
+              🍳Ingredients
+            </h2>
+            {/* <ul className="list-disc pl-6 space-y-1 text-gray-700">
               {recipe.ingredients
                 .split(".")
                 .map((item, index) =>
                   item.trim() ? <li key={index}>{item.trim()}</li> : null
                 )}
-            </ul>
-
-            <ol className="list-decimal pl-6 space-y-2 text-gray-700">
+            </ul> */}
+            <h3>{recipe.ingredients}</h3>
+            {/* <ol className="list-decimal pl-6 space-y-2 text-gray-700">
               {recipe.instructions
                 .split(".")
                 .map((step, index) =>
                   step.trim() ? <li key={index}>{step.trim()}</li> : null
                 )}
-            </ol>
+            </ol> */}
           </div>
 
           <div>
