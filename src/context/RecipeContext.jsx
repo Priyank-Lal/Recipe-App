@@ -282,9 +282,16 @@ const RecipeContext = ({ children }) => {
   ]);
   
   const [favourites, setFavourites] = useState(() => {
-    const saved = localStorage.getItem("favourites");
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem("favourites");
+      return saved && saved !== "undefined" ? JSON.parse(saved) : [];
+    } catch (e) {
+      console.error("Error parsing favourites from localStorage:", e);
+      return [];
+    }
   });
+
+  localStorage.setItem('Recipes',JSON.stringify(data))
 
   useEffect(() => {
     const saved = localStorage.getItem("Recipes");
