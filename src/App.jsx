@@ -1,13 +1,12 @@
-import { useState } from "react";
 import MainRoutes from "./routes/MainRoutes";
-import Navbar from "./components/Navbar";
-import './index.css'
+import "./index.css";
+import Navigation from "./components/Navigation";
 
 function App() {
   return (
-    <div className="w-screen h-screen py-10 px-[10%] mb-64">
-    <Navbar/>
-    <MainRoutes/>
+    <div className="w-screen h-screen">
+      <Navigation />
+      <MainRoutes />
     </div>
   );
 }

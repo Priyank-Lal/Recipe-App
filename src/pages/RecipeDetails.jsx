@@ -5,6 +5,7 @@ import UpdateRecipePopup from "../components/UpdateRecipePopup";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
+import { Clock, Users, UtensilsCrossed } from "lucide-react";
 
 const RecipeDetails = () => {
   const { data, setData, favourites, setFavourites } =
@@ -54,111 +55,103 @@ const RecipeDetails = () => {
     );
 
   return (
-    <>
-      <div className="max-w-6xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <div className="flex gap-8">
+    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12">
+        {/* Image + Actions */}
+        <div className="space-y-6">
           <img
             src={recipe.image}
             alt={recipe.title}
-            className="rounded-3xl shadow-xl object-cover w-[500px] h-[400px]"
+            className="w-full h-96 object-cover rounded-3xl shadow-xl"
           />
-          <div>
-            <div className="flex flex-col gap-6">
-              <h1 className="text-4xl font-extrabold text-green-800">
-                {recipe.title}
-              </h1>
-              <p className="text-gray-700 text-lg">{recipe.description}</p>
-            </div>
-            <div className="flex gap-4 mt-6">
-              <Button
-                variant="contained"
-                onClick={() => {
-                  setPopUp(true);
-                }}
-              >
-                Update Recipe
-              </Button>
-              <Button
-                variant="contained"
-                color="error"
-                onClick={() => setShowDeleteConfirm(true)}
-              >
-                Delete
-              </Button>
-              <Button
-                onClick={isFavourite ? unfavouriteToggle : favouriteToggle}
-                variant="outlined"
-                className={`!px-5 !py-2 !font-semibold !rounded-lg !transition ${
-                  isFavourite
-                    ? "!bg-red-100 !text-red-600 !border !border-red-400"
-                    : "!bg-gray-100 !text-gray-800 !hover:bg-red-50"
-                }`}
-              >
-                {isFavourite
-                  ? "❤️ Added to Favourites"
-                  : "🤍 Add to Favourites"}
-              </Button>
-            </div>
+          <div className="flex flex-wrap gap-3">
+            <Button
+              variant="contained"
+              onClick={() => setPopUp(true)}
+              className="!rounded-xl !px-6 !py-2"
+            >
+              Update Recipe
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => setShowDeleteConfirm(true)}
+              className="!rounded-xl !px-6 !py-2"
+            >
+              Delete
+            </Button>
+            <Button
+              onClick={isFavourite ? unfavouriteToggle : favouriteToggle}
+              variant="outlined"
+              className={`!px-6 !py-2 !rounded-xl !transition font-semibold ${
+                isFavourite
+                  ? "!bg-red-100 !text-red-600 !border-red-400"
+                  : "!bg-gray-100 !text-gray-800 hover:!bg-red-50"
+              }`}
+            >
+              {isFavourite ? "❤️ Added to Favourites" : "🤍 Add to Favourites"}
+            </Button>
           </div>
         </div>
 
+        {/* Recipe Info */}
         <div className="space-y-6">
-          <div className="flex flex-wrap gap-3 text-sm">
-            <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">
-              ⏱ Duration: {recipe.duration}
-            </span>
-            <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full font-medium">
-              ⭐ {recipe.rating} ({recipe.reviewCount} reviews)
-            </span>
-            <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full font-medium">
-              🍽 Category: {recipe.category}
-            </span>
-            <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">
-              🧂 Taste: {recipe.taste}
-            </span>
-            <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-medium">
-              🌍 Cuisine: {recipe.cuisine}
-            </span>
-            <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">
+          <div>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              {recipe.title}
+            </h1>
+            <p className="text-gray-600 text-lg">{recipe.description}</p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-emerald-600" /> {recipe.duration}
+            </div>
+            <div className="flex items-center gap-2">
+              <Users className="w-4 h-4 text-emerald-600" />{" "}
+              {recipe.servings || 2} servings
+            </div>
+            <div className="flex items-center gap-2">
+              <UtensilsCrossed className="w-4 h-4 text-emerald-600" />{" "}
+              {recipe.cuisine}
+            </div>
+            <div className="flex items-center gap-2">
               👨‍🍳 Chef: {recipe.chef}
-            </span>
+            </div>
           </div>
 
           <div>
             <h2 className="text-2xl font-semibold text-green-700 mb-2">
-              🍳Ingredients
+              🍳 Ingredients
             </h2>
-            {/* <ul className="list-disc pl-6 space-y-1 text-gray-700">
+            <ul className="list-disc pl-5 space-y-1 text-gray-700">
               {recipe.ingredients
-                .split(".")
-                .map((item, index) =>
-                  item.trim() ? <li key={index}>{item.trim()}</li> : null
+                ?.split(".")
+                .map((item, i) =>
+                  item.trim() ? <li key={i}>{item.trim()}</li> : null
                 )}
-            </ul> */}
-            <h3>{recipe.ingredients}</h3>
-            {/* <ol className="list-decimal pl-6 space-y-2 text-gray-700">
-              {recipe.instructions
-                .split(".")
-                .map((step, index) =>
-                  step.trim() ? <li key={index}>{step.trim()}</li> : null
-                )}
-            </ol> */}
+            </ul>
           </div>
 
           <div>
             <h2 className="text-2xl font-semibold text-green-700 mb-2">
               👨‍🍳 Instructions
             </h2>
-            <ol className="list-decimal pl-6 space-y-2 text-gray-700">
-              {recipe.instructions}
+            <ol className="list-decimal pl-5 space-y-2 text-gray-700">
+              {recipe.instructions
+                ?.split(".")
+                .map((step, i) =>
+                  step.trim() ? <li key={i}>{step.trim()}</li> : null
+                )}
             </ol>
           </div>
         </div>
       </div>
+
+      {/* Update Recipe Modal */}
       <AnimatePresence>
         {popUp && (
           <motion.div
-            key="popup"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
@@ -166,7 +159,6 @@ const RecipeDetails = () => {
             className="fixed inset-0 z-40 flex justify-center items-center"
           >
             <div className="absolute inset-0 bg-black opacity-30"></div>
-
             <div className="z-50 bg-white p-6 rounded-2xl shadow-2xl max-w-2xl w-full">
               <UpdateRecipePopup
                 data={data}
@@ -179,7 +171,7 @@ const RecipeDetails = () => {
         )}
       </AnimatePresence>
 
-      {/* Delete Confirmation Popup */}
+      {/* Delete Confirmation Modal */}
       <AnimatePresence>
         {showDeleteConfirm && (
           <motion.div
@@ -221,7 +213,7 @@ const RecipeDetails = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </section>
   );
 };
 

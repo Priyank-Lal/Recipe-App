@@ -1,109 +1,104 @@
-import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Skeleton from "@mui/material/Skeleton";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
+import { motion } from "framer-motion";
+import { Heart, Clock, Users, UtensilsCrossed } from "lucide-react"; // changed icon
+import { useContext, useEffect, useState } from "react";
 import { recipeContext } from "../context/RecipeContext";
 import { toast } from "react-toastify";
 
 const RecipeCard = ({ recipe }) => {
-  const { id, title, chef, description, category, image } = recipe;
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [isFavourite, setIsFavourite] = useState(false);
+  const {
+    id,
+    title,
+    description,
+    category,
+    image,
+    time,
+    servings,
+    chef,
+    cuisine = "Global", 
+  } = recipe;
 
   const { favourites, setFavourites } = useContext(recipeContext);
+  const [isFavourite, setIsFavourite] = useState(false);
 
   useEffect(() => {
-    const fav = favourites.some((f) => f.id === recipe.id);
-    setIsFavourite(fav);
-  }, [favourites, recipe.id]);
+    setIsFavourite(favourites.some((f) => f.id === id));
+  }, [favourites, id]);
 
-  const favouriteToggle = () => {
-    if (favourites.some((f) => f.id === recipe.id)) return;
-    setFavourites([...favourites, recipe]);
-    toast.success("Added to Favourites!");
-  };
-
-  const unfavouriteToggle = () => {
-    const updated = favourites.filter((f) => f.id !== recipe.id);
-    setFavourites(updated);
-    toast.info("Removed from Favourites!");
+  const toggleFavourite = (e) => {
+    e.preventDefault();
+    if (isFavourite) {
+      setFavourites(favourites.filter((f) => f.id !== id));
+      toast.info("Removed from Favourites!");
+    } else {
+      setFavourites([...favourites, recipe]);
+      toast.success("Added to Favourites!");
+    }
   };
 
   return (
-    <Link to={`/recipes/details/${id}`} className="block">
-      <div className="w-full h-116 mx-auto bg-white rounded-3xl overflow-hidden border border-gray-300 shadow-lg hover:shadow-2xl hover:shadow-yellow-200 transform hover:scale-105 transition-all duration-300">
-        <div className="overflow-hidden">
-          {!imageLoaded && (
-            <Skeleton
-              variant="rectangular"
-              width="100%"
-              height={240}
-              animation="wave"
+    <motion.div
+      whileHover={{ y: -8 }}
+      className="bg-white rounded-2xl shadow-lg hover:shadow-xl overflow-hidden transition-shadow duration-300"
+    >
+      <div className="relative">
+        <img src={image} alt={title} className="w-full h-48 object-cover" />
+        <div className="absolute top-3 right-3">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={toggleFavourite}
+            className="bg-white rounded-full p-2 shadow-md hover:bg-red-50 cursor-pointer"
+          >
+            <Heart
+              className={`h-5 w-5 ${
+                isFavourite ? "text-red-500 fill-red-500" : "text-gray-600"
+              }`}
             />
-          )}
-          <img
-            className={`h-60 w-full object-cover transition-transform duration-300 hover:scale-110 ${
-              imageLoaded ? "block" : "hidden"
-            }`}
-            src={image}
-            alt={title}
-            onLoad={() => setImageLoaded(true)}
-          />
+          </motion.button>
         </div>
-
-        <div className="p-5 space-y-3 h-60 relative">
-          <h2 className="text-2xl font-extrabold text-gray-800">{title}</h2>
-          <p className="text-base text-green-700 font-medium">
-            👨‍🍳 Chef: {chef}
-          </p>
-          <p className="text-sm text-gray-600 line-clamp-3 w-full">
-            {description.length > 100 ? (
-              <>
-                {description.slice(0, 100)}...{" "}
-                <span className="text-blue-700 font-semibold hover:underline">
-                  more
-                </span>
-              </>
-            ) : (
-              description
-            )}
-          </p>
-          <div>
-            <div className="px-3 py-1 mt-2 text-xs font-bold bg-yellow-200 text-yellow-900 rounded-full absolute bottom-10">
-              #{category}
-            </div>
-            <div className="absolute bottom-8 right-5">
-              {isFavourite ? (
-                <Tooltip title="Remove from Favourites" placement="top" arrow>
-                  <IconButton
-                    onClick={(e) => {
-                      e.preventDefault();
-                      unfavouriteToggle();
-                    }}
-                  >
-                    <FavoriteIcon htmlColor="red" />
-                  </IconButton>
-                </Tooltip>
-              ) : (
-                <Tooltip title="Add to Favourites" placement="top" arrow>
-                  <IconButton
-                    onClick={(e) => {
-                      e.preventDefault();
-                      favouriteToggle();
-                    }}
-                  >
-                    <FavoriteBorderIcon />
-                  </IconButton>
-                </Tooltip>
-              )}
-            </div>
-          </div>
+        <div className="absolute top-3 left-3">
+          <span className="bg-emerald-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+            {category}
+          </span>
         </div>
       </div>
-    </Link>
+
+      <div className="p-6">
+        <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
+        {chef && (
+          <p className="text-sm text-green-700 font-medium mb-1">
+            👨‍🍳 Chef: {chef}
+          </p>
+        )}
+        <p className="text-gray-600 text-sm mb-4 line-clamp-2">{description}</p>
+
+        <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+          <div className="flex items-center gap-1">
+            <Clock className="h-4 w-4" />
+            <span>{time || "30 min"}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Users className="h-4 w-4" />
+            <span>{servings || 2}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <UtensilsCrossed className="h-4 w-4 text-emerald-500" />
+            <span>{cuisine}</span>
+          </div>
+        </div>
+
+        <Link to={`/recipes/details/${id}`} className="">
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="w-full bg-emerald-600 text-white py-2.5 rounded-xl font-medium hover:bg-emerald-700 transition cursor-pointer"
+          >
+            View Recipe
+          </motion.button>
+        </Link>
+      </div>
+    </motion.div>
   );
 };
 
