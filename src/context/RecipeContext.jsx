@@ -388,26 +388,39 @@ const RecipeContext = ({ children }) => {
   useEffect(() => {
     const loadData = async () => {
       const saved = localStorage.getItem("Recipes");
-      let baseData = saved ? JSON.parse(saved) : [...data]; // fallback to initial recipes
+      let baseData = saved ? JSON.parse(saved) : []; // start with empty, not `data`
 
-      // Add missing featured recipes
+      if (!saved) {
+        baseData = [...data]; // use initial default recipes only one-time
+      }
+
       featuredRecipes.forEach((featured) => {
         if (!baseData.some((r) => r.id === featured.id)) {
           baseData.push(featured);
         }
       });
 
-      // Compress remote images only
       const processed = await Promise.all(
         baseData.map(async (recipe) => {
-          const isRemoteUrl =
-            typeof recipe.image === "string" && recipe.image.startsWith("http");
-
-          const image = isRemoteUrl
-            ? await compressImage(recipe.image)
-            : recipe.image;
-
-          return { ...recipe, image };
+          if (
+            typeof recipe.image === "string" &&
+            recipe.image.startsWith("http")
+          ) {
+            try {
+              const res = await fetch(recipe.image);
+              const blob = await res.blob();
+              const compressed = await imageCompression(blob, {
+                maxSizeMB: 0.4,
+                maxWidthOrHeight: 800,
+              });
+              recipe.image = await imageCompression.getDataUrlFromFile(
+                compressed
+              );
+            } catch {
+              // leave image as-is
+            }
+          }
+          return recipe;
         })
       );
 
@@ -417,6 +430,7 @@ const RecipeContext = ({ children }) => {
 
     loadData();
   }, []);
+  
 
   useEffect(() => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
