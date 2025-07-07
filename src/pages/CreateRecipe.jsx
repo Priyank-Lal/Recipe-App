@@ -47,7 +47,13 @@ const [isImageLoading, setIsImageLoading] = useState(true);
   const submitHandler = async (recipe) => {
     recipe.id = nanoid();
 
+    // CASE 1: File input is a file object
     if (file && typeof file !== "string") {
+      if (!file.type.startsWith("image/")) {
+        toast.error("Please upload a valid image file.");
+        return;
+      }
+
       try {
         const compressed = await imageCompression(file, {
           maxSizeMB: 0.4,
@@ -56,6 +62,10 @@ const [isImageLoading, setIsImageLoading] = useState(true);
         });
 
         const base64 = await toBase64(compressed);
+        if (base64.length > 1000000) {
+          toast.warn("Image may be too large and could affect performance.");
+        }
+
         recipe.image = base64;
       } catch (err) {
         toast.error("Image upload failed");
@@ -63,16 +73,39 @@ const [isImageLoading, setIsImageLoading] = useState(true);
         return;
       }
     }
-    // If user pasted a URL
-    else if (typeof file === "string") {
-      recipe.image = file;
-    } else {
+
+    // CASE 2: File input is a pasted URL
+    else if (typeof file === "string" && file.startsWith("http")) {
+      try {
+        const res = await fetch(file);
+        const blob = await res.blob();
+
+        const compressed = await imageCompression(blob, {
+          maxSizeMB: 0.4,
+          maxWidthOrHeight: 800,
+          useWebWorker: true,
+        });
+
+        const base64 = await toBase64(compressed);
+        if (base64.length > 1000000) {
+          toast.warn("Image may be too large and could affect performance.");
+        }
+
+        recipe.image = base64;
+      } catch (err) {
+        toast.error("Failed to fetch or compress image from URL.");
+        console.error("URL image compression error:", err);
+        return;
+      }
+    }
+
+    // CASE 3: No image provided
+    else {
       toast.error("Please upload or paste an image.");
       return;
     }
 
- 
-
+    // Update local state and storage
     const updatedData = [...data, recipe];
     setData(updatedData);
     localStorage.setItem("Recipes", JSON.stringify(updatedData));
@@ -83,6 +116,7 @@ const [isImageLoading, setIsImageLoading] = useState(true);
     setFile(null);
     setUploadImage("");
   };
+  
 
   // 🔧 Helper function: File to Base64
   const toBase64 = (file) =>

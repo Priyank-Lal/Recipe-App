@@ -386,45 +386,19 @@ const RecipeContext = ({ children }) => {
   };
 
   useEffect(() => {
-    const loadData = async () => {
+    const loadData = () => {
       const saved = localStorage.getItem("Recipes");
       let baseData = saved ? JSON.parse(saved) : [...featuredRecipes];
 
-      // Add featured if missing
+      // Add any missing featured recipes
       featuredRecipes.forEach((featured) => {
         if (!baseData.some((r) => r.id === featured.id)) {
           baseData.push(featured);
         }
       });
 
-      // Compress images
-      const processed = await Promise.all(
-        baseData.map(async (recipe) => {
-          if (
-            typeof recipe.image === "string" &&
-            recipe.image.startsWith("http")
-          ) {
-            try {
-              const res = await fetch(recipe.image);
-              const blob = await res.blob();
-              const compressed = await imageCompression(blob, {
-                maxSizeMB: 0.4,
-                maxWidthOrHeight: 800,
-              });
-              const image = await imageCompression.getDataUrlFromFile(
-                compressed
-              );
-              return { ...recipe, image };
-            } catch (err) {
-              console.error("Image compression failed:", recipe.image, err);
-            }
-          }
-          return recipe;
-        })
-      );
-
-      setData(processed);
-      localStorage.setItem("Recipes", JSON.stringify(processed));
+      setData(baseData);
+      localStorage.setItem("Recipes", JSON.stringify(baseData));
     };
 
     loadData();
