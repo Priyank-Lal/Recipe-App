@@ -388,7 +388,7 @@ const RecipeContext = ({ children }) => {
   useEffect(() => {
     const loadData = async () => {
       const saved = localStorage.getItem("Recipes");
-      let baseData = saved ? JSON.parse(saved) : []; // start with empty, not `data`
+      let baseData = saved ? JSON.parse(saved) : [...data]; // Use defaults if no saved
 
       if (!saved) {
         baseData = [...data]; // use initial default recipes only one-time
@@ -399,6 +399,7 @@ const RecipeContext = ({ children }) => {
           baseData.push(featured);
         }
       });
+  
 
       const processed = await Promise.all(
         baseData.map(async (recipe) => {
@@ -424,8 +425,8 @@ const RecipeContext = ({ children }) => {
         })
       );
 
-      setData(processed);
-      localStorage.setItem("Recipes", JSON.stringify(processed));
+      setData(baseData);
+      localStorage.setItem("Recipes", JSON.stringify(baseData));
     };
 
     loadData();
