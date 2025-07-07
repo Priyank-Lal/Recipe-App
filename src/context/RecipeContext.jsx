@@ -388,7 +388,7 @@ const RecipeContext = ({ children }) => {
   useEffect(() => {
     const loadData = async () => {
       const saved = localStorage.getItem("Recipes");
-      let baseData = saved ? JSON.parse(saved) : [];
+      let baseData = saved ? JSON.parse(saved) : [...data]; // fallback to initial recipes
 
       // Add missing featured recipes
       featuredRecipes.forEach((featured) => {
