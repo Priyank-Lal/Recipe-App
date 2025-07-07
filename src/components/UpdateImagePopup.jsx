@@ -79,6 +79,7 @@ const UpdateImagePopup = ({ onClose, onSave, existingImage }) => {
                 Current Image
               </h3>
               <img
+                loading="lazy"
                 src={existingImage}
                 alt="Current"
                 className="rounded-xl w-full h-[400px] object-cover border border-gray-300 shadow"
@@ -142,6 +143,7 @@ const UpdateImagePopup = ({ onClose, onSave, existingImage }) => {
                   </h3>
                   <div className="flex flex-col gap-4">
                     <img
+                      loading="lazy"
                       src={file ? URL.createObjectURL(file) : imageURL}
                       alt="Preview"
                       className="rounded-xl w-full h-[400px] object-cover border border-gray-300 shadow"

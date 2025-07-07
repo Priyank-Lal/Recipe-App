@@ -48,6 +48,7 @@ const RecipeCard = ({ recipe }) => {
           <Skeleton variant="rectangular" width="100%" height="100%" />
         )}
         <img
+          loading="lazy"
           src={image}
           alt={title}
           className={`w-full h-56 object-cover absolute inset-0 transition-opacity duration-300 ${

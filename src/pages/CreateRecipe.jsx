@@ -32,10 +32,6 @@ const CreateRecipe = () => {
   const { data, setData } = useContext(recipeContext);
 
 const [isImageLoading, setIsImageLoading] = useState(true);
-
-  const handleFile = (f) =>
-    f.target?.files ? setFile(f.target.files[0]) : setFile(f);
-
   const handleDrop = (e) => {
     e.preventDefault();
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
@@ -51,7 +47,6 @@ const [isImageLoading, setIsImageLoading] = useState(true);
   const submitHandler = async (recipe) => {
     recipe.id = nanoid();
 
-    // Check if file is uploaded
     if (file && typeof file !== "string") {
       try {
         const compressed = await imageCompression(file, {

@@ -151,6 +151,7 @@ const FeaturedRecipes = () => {
               >
                 <div className="relative">
                   <img
+                    loading="lazy"
                     src={recipe.image}
                     alt={recipe.title}
                     className="w-full h-56 object-cover"

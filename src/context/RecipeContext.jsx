@@ -1,4 +1,15 @@
 import { createContext, useEffect, useState } from "react";
+import imageCompression from "browser-image-compression";
+import chickenBiryani from "../images/chickenBiryani.webp";
+import butterChicken from "../images/butterChicken.webp";
+import avocadoToast from "../images/avocadoToastEgg.webp";
+import chickenTandoori from "../images/chickenTandoori.webp";
+import greekSalad from "../images/greekSalad.webp";
+import mushroomSoup from "../images/mushroomSoup.webp";
+import pancake from "../images/pancake.webp";
+import paneerTikka from "../images/pannerTikka.webp";
+import sushi from "../images/sushi.webp";
+
 
 export const recipeContext = createContext(null);
 
@@ -127,8 +138,7 @@ const RecipeContext = ({ children }) => {
         "Paneer cubes, Yogurt, Ginger‑garlic paste, Chili powder, Garam masala, Lemon juice, Salt, Bell peppers, Onion",
       instructions:
         "Marinate paneer & veggies in spiced yogurt. Skewer, grill at 200 °C for 15‑20 min. Serve with mint chutney.",
-      image:
-        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/75e7536c2dbe401796f98236cea34f81.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T060727Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=0a420c530502534bb4bd17800c59a2200ad06ee72e3bd99a00f85cafba9ee673",
+      image: paneerTikka,
       category: "Appetizer",
       chef: "Aarav Mehta",
       description:
@@ -145,8 +155,7 @@ const RecipeContext = ({ children }) => {
         "Bread, Avocado, Lemon juice, Salt, Pepper, Chili flakes, Poached egg",
       instructions:
         "Toast bread. Mash avocado with lemon, salt & pepper. Spread on toast, top with poached egg & chili flakes.",
-      image:
-        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/8f6ed2d2078c4be3909da9c155eacdf1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T060636Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10799&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=9dec71501872462190b5f4ca03dc9f727ac45d05c548d2b281ca7368f31e604e",
+      image: avocadoToast,
       category: "Breakfast",
       chef: "Liam Turner",
       description:
@@ -163,8 +172,7 @@ const RecipeContext = ({ children }) => {
         "Sushi rice, Nori, Cucumber, Avocado, Crab sticks, Vinegar, Soy sauce, Wasabi",
       instructions:
         "Cook rice, season. Place nori, spread rice, add fillings, roll, slice, serve with soy and wasabi.",
-      image:
-        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/1140a074c6744178be1db5558d8289a6.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T060358Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=2a804ec51988513ce9ba45a97de48a52fb524af114c47bc7ecd47d35ec1cdfab",
+      image: sushi,
       category: "Dinner",
       chef: "Hiroshi Tanaka",
       description:
@@ -181,8 +189,7 @@ const RecipeContext = ({ children }) => {
         "Mushrooms, Onion, Garlic, Butter, Broth, Cream, Salt, Pepper, Thyme",
       instructions:
         "Sauté mushrooms, onion, garlic in butter. Add broth, simmer, blend. Add cream, season, serve hot.",
-      image:
-        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/a9d043cf7308420d8a47d1a4feec1e2f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T061149Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=2e67713bd954a12e95ca38ccf1fe6d69c506fc0d1dc23fd35ea0f47d0904d283",
+      image: mushroomSoup,
       category: "Lunch",
       chef: "Isla Morgan",
       description:
@@ -199,8 +206,7 @@ const RecipeContext = ({ children }) => {
         "Flour, Eggs, Milk, Baking powder, Butter, Sugar, Salt, Maple syrup",
       instructions:
         "Mix wet & dry ingredients. Cook on griddle until golden. Serve with maple syrup.",
-      image:
-        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/ff60d1b4949f4cd0b33450542c40e1d0.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T061219Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=d74a748b0aeb132d31b237f5081138bf4fd3a231324a32be180c0575980b069f",
+      image: pancake,
       category: "Breakfast",
       chef: "Olivia Brown",
       description:
@@ -217,8 +223,7 @@ const RecipeContext = ({ children }) => {
         "Chicken drumsticks, Yogurt, Lemon juice, Ginger‑garlic paste, Spices, Mustard oil",
       instructions:
         "Marinate chicken for 6‑8 hrs, grill or bake at 220 °C for 30 min. Serve with onion & lemon.",
-      image:
-        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/bfd1bb9578314a5db664fbe0335878d6.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T061058Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=58d4ce1cd9b64d55fa6da10a265843c2234b839ac9d0df6bb534c1c0f418270a",
+      image: chickenTandoori,
       category: "Dinner",
       chef: "Rajeev Sharma",
       description:
@@ -235,8 +240,7 @@ const RecipeContext = ({ children }) => {
         "Cucumber, Tomatoes, Onion, Olives, Feta, Olive oil, Lemon juice, Oregano",
       instructions:
         "Chop veggies, mix with olives & feta, drizzle oil & lemon, toss well, serve.",
-      image:
-        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/77f8fc19c3224ce0a13869d21d79e36a.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T061253Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=edce4beabdedd63510ef99bb71d218676151bb7176e31194829010f4b595e104",
+      image: greekSalad,
       category: "Lunch",
       chef: "Nikos Papadopoulos",
       description:
@@ -253,8 +257,7 @@ const RecipeContext = ({ children }) => {
         "Boneless chicken, Butter, Tomato puree, Cream, Garlic, Ginger, Spices, Fenugreek leaves",
       instructions:
         "Cook chicken, prepare creamy tomato sauce, combine and simmer with fenugreek, serve with naan.",
-      image:
-        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/8a9e22c31f424e63a407fe2b7558a0b8.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T061327Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=6bc637f714f9bf5f81d4710e51187e26a8535127b138759f80c44582ae8f9a0c",
+      image: butterChicken,
       category: "Dinner",
       chef: "Neha Kapoor",
       description:
@@ -269,8 +272,7 @@ const RecipeContext = ({ children }) => {
       title: "Chicken Biryani",
       description:
         "A fragrant and flavorful Indian rice dish made with marinated chicken, aromatic spices, and basmati rice, layered and cooked to perfection.",
-      image:
-        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/5a706e05bad6423d8bbe5b2d3022077e.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T061451Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=023324698feeee1aa6812f818ba4fb0851ffb28fabbe305845d08a9689abddda",
+      image: chickenBiryani,
       category: "Dinner",
       chef: "Zainab Khan",
       time: "60 mins",
@@ -283,6 +285,15 @@ const RecipeContext = ({ children }) => {
         "Marinate chicken in yogurt, spices, ginger-garlic paste. Fry onions until golden. Add tomatoes and cook until soft. Add marinated chicken and cook until done. Boil basmati rice with whole spices until 70% cooked. In a pot, layer rice and chicken alternately. Add fried onions, coriander, mint, saffron milk. Cover tightly and cook on low heat for 20–25 mins (dum). Serve hot with raita or salad.",
     },
   ]);
+  const [favourites, setFavourites] = useState(() => {
+    try {
+      const saved = localStorage.getItem("favourites");
+      return saved && saved !== "undefined" ? JSON.parse(saved) : [];
+    } catch (e) {
+      console.error("Error parsing favourites from localStorage:", e);
+      return [];
+    }
+  });
 
   const featuredRecipes = [
     {
@@ -358,34 +369,52 @@ const RecipeContext = ({ children }) => {
     },
   ];
 
-  const [favourites, setFavourites] = useState(() => {
+  const compressImage = async (url) => {
     try {
-      const saved = localStorage.getItem("favourites");
-      return saved && saved !== "undefined" ? JSON.parse(saved) : [];
-    } catch (e) {
-      console.error("Error parsing favourites from localStorage:", e);
-      return [];
+      const res = await fetch(url);
+      const blob = await res.blob();
+
+      const compressedBlob = await imageCompression(blob, {
+        maxSizeMB: 0.4,
+        maxWidthOrHeight: 800,
+        useWebWorker: true,
+      });
+
+      return await imageCompression.getDataUrlFromFile(compressedBlob);
+    } catch (err) {
+      console.error("Compression failed for", url, err);
+      return url;
     }
-  });
+  };
 
   useEffect(() => {
-    const saved = localStorage.getItem("Recipes");
-    let baseData = [];
+    const loadData = async () => {
+      const saved = localStorage.getItem("Recipes");
+      let baseData = saved ? JSON.parse(saved) : [];
 
-    if (saved) {
-      baseData = JSON.parse(saved);
-    }
+      featuredRecipes.forEach((featured) => {
+        if (!baseData.some((r) => r.id === featured.id)) {
+          baseData.push(featured);
+        }
+      });
 
-    featuredRecipes.forEach((featured) => {
-      if (!baseData.some((r) => r.id === featured.id)) {
-        baseData.push(featured);
-      }
-    });
+      const processed = await Promise.all(
+        baseData.map(async (recipe) => {
+          const isUrl =
+            typeof recipe.image === "string" && recipe.image.startsWith("http");
+          const image = isUrl
+            ? await compressImage(recipe.image)
+            : recipe.image;
+          return { ...recipe, image };
+        })
+      );
 
-    setData(baseData);
-    localStorage.setItem("Recipes", JSON.stringify(baseData)); 
+      setData(processed);
+      localStorage.setItem("Recipes", JSON.stringify(processed));
+    };
+
+    loadData();
   }, []);
-
   useEffect(() => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
   }, [favourites]);
@@ -394,12 +423,14 @@ const RecipeContext = ({ children }) => {
     localStorage.setItem("Recipes", JSON.stringify(data));
   }, [data]);
 
+
   return (
     <recipeContext.Provider
       value={{ data, setData, favourites, setFavourites }}
     >
       {children}
     </recipeContext.Provider>
+
   );
 };
 

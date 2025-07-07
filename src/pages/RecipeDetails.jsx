@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
 import { recipeContext } from "../context/RecipeContext";
 import { useNavigate, useParams } from "react-router-dom";
-import UpdateRecipePopup from "../components/UpdateRecipePopup";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { Clock, Users, UtensilsCrossed } from "lucide-react";
+import { lazy, Suspense, useContext, useEffect, useState } from "react";
+const UpdateRecipePopup = lazy(() => import("../components/UpdateRecipePopup"));
 
 const RecipeDetails = () => {
   const { data, setData, favourites, setFavourites } =
@@ -60,6 +60,7 @@ const RecipeDetails = () => {
         {/* Image + Actions */}
         <div className="space-y-6">
           <img
+            loading="lazy"
             src={recipe.image}
             alt={recipe.title}
             className="w-full h-128 object-cover rounded-3xl shadow-xl"
@@ -163,14 +164,16 @@ const RecipeDetails = () => {
             className="fixed inset-0 z-40 flex justify-center items-center"
           >
             <div className="absolute inset-0 bg-black opacity-30"></div>
-            <div className="z-50 bg-white p-6 rounded-2xl shadow-2xl max-w-2xl w-full">
-              <UpdateRecipePopup
-                data={data}
-                recipeData={recipe}
-                visible={setPopUp}
-                id={id}
-              />
-            </div>
+            <Suspense fallback={<div className="text-center">Loading...</div>}>
+              <div className="z-50 bg-white p-6 rounded-2xl shadow-2xl max-w-2xl w-full">
+                <UpdateRecipePopup
+                  data={data}
+                  recipeData={recipe}
+                  visible={setPopUp}
+                  id={id}
+                />
+              </div>
+            </Suspense>
           </motion.div>
         )}
       </AnimatePresence>

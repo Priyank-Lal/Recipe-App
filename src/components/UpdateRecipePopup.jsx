@@ -1,4 +1,3 @@
-import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   TextField,
@@ -12,7 +11,8 @@ import {
 import { recipeContext } from "../context/RecipeContext";
 import { toast } from "react-toastify";
 import imageCompression from "browser-image-compression";
-import UpdateImagePopup from "./UpdateImagePopup";
+import { lazy, Suspense, useContext, useState } from "react";
+const UpdateImagePopup = lazy(() => import("./UpdateImagePopup"));
 
 const UpdateRecipePopup = ({ visible, recipeData, data, id }) => {
   const { setData } = useContext(recipeContext);
@@ -222,16 +222,18 @@ const UpdateRecipePopup = ({ visible, recipeData, data, id }) => {
       </form>
 
       {showImagePopup && (
-        <div className="z-50 bg-white p-6 rounded-2xl shadow-2xl max-w-3xl w-full">
-          <UpdateImagePopup
-            existingImage={recipeData.image}
-            onClose={() => setShowImagePopup(false)}
-            onSave={(newImage) => {
-              recipeData.image = newImage;
-              setShowImagePopup(false);
-            }}
-          />
-        </div>
+        <Suspense fallback={<div className="text-center p-6">Loading...</div>}>
+          <div className="z-50 bg-white p-6 rounded-2xl shadow-2xl max-w-3xl w-full">
+            <UpdateImagePopup
+              existingImage={recipeData.image}
+              onClose={() => setShowImagePopup(false)}
+              onSave={(newImage) => {
+                recipeData.image = newImage;
+                setShowImagePopup(false);
+              }}
+            />
+          </div>
+        </Suspense>
       )}
     </div>
   );
