@@ -388,19 +388,16 @@ const RecipeContext = ({ children }) => {
   useEffect(() => {
     const loadData = async () => {
       const saved = localStorage.getItem("Recipes");
-      let baseData = saved ? JSON.parse(saved) : [...data]; // Use defaults if no saved
+      let baseData = saved ? JSON.parse(saved) : [...featuredRecipes];
 
-      if (!saved) {
-        baseData = [...data]; // use initial default recipes only one-time
-      }
-
+      // Add featured if missing
       featuredRecipes.forEach((featured) => {
         if (!baseData.some((r) => r.id === featured.id)) {
           baseData.push(featured);
         }
       });
-  
 
+      // Compress images
       const processed = await Promise.all(
         baseData.map(async (recipe) => {
           if (
@@ -414,19 +411,20 @@ const RecipeContext = ({ children }) => {
                 maxSizeMB: 0.4,
                 maxWidthOrHeight: 800,
               });
-              recipe.image = await imageCompression.getDataUrlFromFile(
+              const image = await imageCompression.getDataUrlFromFile(
                 compressed
               );
-            } catch {
-              // leave image as-is
+              return { ...recipe, image };
+            } catch (err) {
+              console.error("Image compression failed:", recipe.image, err);
             }
           }
           return recipe;
         })
       );
 
-      setData(baseData);
-      localStorage.setItem("Recipes", JSON.stringify(baseData));
+      setData(processed);
+      localStorage.setItem("Recipes", JSON.stringify(processed));
     };
 
     loadData();
@@ -436,8 +434,6 @@ const RecipeContext = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
   }, [favourites]);
-
-
 
   return (
     <recipeContext.Provider
