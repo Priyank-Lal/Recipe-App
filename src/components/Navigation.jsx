@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ChefHat } from "lucide-react";
 
 const Navigation = () => {
-  const activeLink = ({ isActive }: { isActive: boolean }) => {
+  const activeLink = ({ isActive }) => {
     return isActive
       ? "text-emerald-600 bg-emerald-50 px-4 py-2 rounded-lg font-semibold"
       : "text-gray-600 hover:text-emerald-600 px-4 py-2 rounded-lg font-medium transition-colors duration-200";
