@@ -367,50 +367,25 @@ const RecipeContext = ({ children }) => {
     }
   });
 
-  const compressImage = async (url) => {
-    try {
-      const res = await fetch(url);
-      const blob = await res.blob();
-
-      const compressedBlob = await imageCompression(blob, {
-        maxSizeMB: 0.4,
-        maxWidthOrHeight: 800,
-        useWebWorker: true,
-      });
-
-      return await imageCompression.getDataUrlFromFile(compressedBlob);
-    } catch (err) {
-      console.error("Compression failed for", url, err);
-      return url; // fallback to original if compression fails
-    }
-  };
-
-  useEffect(() => {
-    localStorage.setItem("Recipes", JSON.stringify(data));
-  }, [data]); 
-  useEffect(() => {
-    const loadData = () => {
-      const saved = localStorage.getItem("Recipes");
-      let baseData = saved ? JSON.parse(saved) : [...featuredRecipes];
-
-      featuredRecipes.forEach((featured) => {
-        if (!baseData.some((r) => r.id === featured.id)) {
-          baseData.push(featured);
-        }
-      });
-
-      setData(baseData);
-      localStorage.setItem("Recipes", JSON.stringify(baseData));
-    };
-
-    loadData();
-  }, []);
-
   useEffect(() => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
   }, [favourites]);
 
- 
+  useEffect(() => {
+    localStorage.setItem("Recipes", JSON.stringify(data));
+  }, [data]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("Recipes");
+
+    if (!saved) {
+      localStorage.setItem("Recipes", JSON.stringify(featuredRecipes));
+      setData(featuredRecipes);
+    } else {
+      const parsed = JSON.parse(saved);
+      setData(parsed);
+    }
+  }, []);
 
   return (
     <recipeContext.Provider
