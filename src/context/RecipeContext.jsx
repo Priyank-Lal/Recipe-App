@@ -16,6 +16,74 @@ import cake from "../images/cake.webp";
 
 export const recipeContext = createContext(null);
 
+const featuredRecipes = [
+  {
+    id: "20",
+    title: "Creamy Garlic Pasta",
+    description:
+      "Rich and creamy pasta with roasted garlic and parmesan cheese",
+    image: garlicPasta,
+    time: "20 mins",
+    servings: 4,
+    category: "Dinner",
+    taste: "Savory",
+    cuisine: "Italian",
+    chef: "Gianna Russo",
+    ingredients:
+      "Spaghetti, Garlic, Heavy cream, Parmesan cheese, Butter, Salt, Pepper",
+    instructions:
+      "Cook spaghetti. Sauté minced garlic in butter. Add cream, simmer, then add Parmesan. Toss in cooked pasta and season with salt and pepper.",
+  },
+  {
+    id: "17",
+    title: "Grilled Salmon Bowl",
+    description: "Fresh grilled salmon with quinoa, avocado, and vegetables",
+    image: salmonBowl,
+    time: "30 mins",
+    servings: 2,
+    category: "Healthy",
+    taste: "Fresh",
+    cuisine: "Mediterranean",
+    chef: "Noah Bennett",
+    ingredients:
+      "Salmon fillets, Quinoa, Avocado, Cucumber, Cherry tomatoes, Olive oil, Lemon juice, Salt, Pepper",
+    instructions:
+      "Grill seasoned salmon fillets. Cook quinoa. Prepare a bowl with sliced avocado, cucumber, tomatoes, and quinoa. Top with salmon and drizzle with olive oil and lemon.",
+  },
+  {
+    id: "18",
+    title: "Chocolate Lava Cake",
+    description:
+      "Decadent chocolate cake with molten center and vanilla ice cream",
+    image: cake,
+    time: "45 mins",
+    servings: 6,
+    category: "Dessert",
+    taste: "Sweet",
+    cuisine: "French",
+    chef: "Clara Dubois",
+    ingredients: "Dark chocolate, Butter, Eggs, Sugar, Flour, Vanilla extract",
+    instructions:
+      "Melt chocolate and butter. Whisk eggs and sugar until fluffy. Fold in chocolate mixture and flour. Pour into ramekins and bake until edges are firm but center is gooey.",
+  },
+  {
+    id: "19",
+    title: "Mediterranean Salad",
+    description:
+      "Fresh vegetables, olives, feta cheese with olive oil dressing",
+    image: mediterraneanSalad,
+    time: "15 mins",
+    servings: 3,
+    category: "Salad",
+    taste: "Tangy",
+    cuisine: "Greek",
+    chef: "Yannis Kostas",
+    ingredients:
+      "Cucumber, Cherry tomatoes, Red onion, Kalamata olives, Feta cheese, Olive oil, Lemon juice, Oregano, Salt, Pepper",
+    instructions:
+      "Chop all vegetables. Mix in olives and feta. Whisk together olive oil, lemon juice, oregano, salt and pepper. Toss salad with dressing before serving.",
+  },
+];
 const RecipeContext = ({ children }) => {
   const [data, setData] = useState([
     {
@@ -288,6 +356,7 @@ const RecipeContext = ({ children }) => {
         "Marinate chicken in yogurt, spices, ginger-garlic paste. Fry onions until golden. Add tomatoes and cook until soft. Add marinated chicken and cook until done. Boil basmati rice with whole spices until 70% cooked. In a pot, layer rice and chicken alternately. Add fried onions, coriander, mint, saffron milk. Cover tightly and cook on low heat for 20–25 mins (dum). Serve hot with raita or salad.",
     },
   ]);
+
   const [favourites, setFavourites] = useState(() => {
     try {
       const saved = localStorage.getItem("favourites");
@@ -298,75 +367,6 @@ const RecipeContext = ({ children }) => {
     }
   });
 
-   const featuredRecipes = [
-     {
-       id: "20",
-       title: "Creamy Garlic Pasta",
-       description:
-         "Rich and creamy pasta with roasted garlic and parmesan cheese",
-       image: garlicPasta,
-       time: "20 mins",
-       servings: 4,
-       category: "Dinner",
-       taste: "Savory",
-       cuisine: "Italian",
-       chef: "Gianna Russo",
-       ingredients:
-         "Spaghetti, Garlic, Heavy cream, Parmesan cheese, Butter, Salt, Pepper",
-       instructions:
-         "Cook spaghetti. Sauté minced garlic in butter. Add cream, simmer, then add Parmesan. Toss in cooked pasta and season with salt and pepper.",
-     },
-     {
-       id: "17",
-       title: "Grilled Salmon Bowl",
-       description: "Fresh grilled salmon with quinoa, avocado, and vegetables",
-       image: salmonBowl,
-       time: "30 mins",
-       servings: 2,
-       category: "Healthy",
-       taste: "Fresh",
-       cuisine: "Mediterranean",
-       chef: "Noah Bennett",
-       ingredients:
-         "Salmon fillets, Quinoa, Avocado, Cucumber, Cherry tomatoes, Olive oil, Lemon juice, Salt, Pepper",
-       instructions:
-         "Grill seasoned salmon fillets. Cook quinoa. Prepare a bowl with sliced avocado, cucumber, tomatoes, and quinoa. Top with salmon and drizzle with olive oil and lemon.",
-     },
-     {
-       id: "18",
-       title: "Chocolate Lava Cake",
-       description:
-         "Decadent chocolate cake with molten center and vanilla ice cream",
-       image: cake,
-       time: "45 mins",
-       servings: 6,
-       category: "Dessert",
-       taste: "Sweet",
-       cuisine: "French",
-       chef: "Clara Dubois",
-       ingredients:
-         "Dark chocolate, Butter, Eggs, Sugar, Flour, Vanilla extract",
-       instructions:
-         "Melt chocolate and butter. Whisk eggs and sugar until fluffy. Fold in chocolate mixture and flour. Pour into ramekins and bake until edges are firm but center is gooey.",
-     },
-     {
-       id: "19",
-       title: "Mediterranean Salad",
-       description:
-         "Fresh vegetables, olives, feta cheese with olive oil dressing",
-       image: mediterraneanSalad,
-       time: "15 mins",
-       servings: 3,
-       category: "Salad",
-       taste: "Tangy",
-       cuisine: "Greek",
-       chef: "Yannis Kostas",
-       ingredients:
-         "Cucumber, Cherry tomatoes, Red onion, Kalamata olives, Feta cheese, Olive oil, Lemon juice, Oregano, Salt, Pepper",
-       instructions:
-         "Chop all vegetables. Mix in olives and feta. Whisk together olive oil, lemon juice, oregano, salt and pepper. Toss salad with dressing before serving.",
-     },
-   ];
   const compressImage = async (url) => {
     try {
       const res = await fetch(url);
@@ -381,7 +381,7 @@ const RecipeContext = ({ children }) => {
       return await imageCompression.getDataUrlFromFile(compressedBlob);
     } catch (err) {
       console.error("Compression failed for", url, err);
-      return url;
+      return url; // fallback to original if compression fails
     }
   };
 
@@ -390,19 +390,23 @@ const RecipeContext = ({ children }) => {
       const saved = localStorage.getItem("Recipes");
       let baseData = saved ? JSON.parse(saved) : [];
 
+      // Add missing featured recipes
       featuredRecipes.forEach((featured) => {
         if (!baseData.some((r) => r.id === featured.id)) {
           baseData.push(featured);
         }
       });
 
+      // Compress remote images only
       const processed = await Promise.all(
         baseData.map(async (recipe) => {
-          const isUrl =
+          const isRemoteUrl =
             typeof recipe.image === "string" && recipe.image.startsWith("http");
-          const image = isUrl
+
+          const image = isRemoteUrl
             ? await compressImage(recipe.image)
             : recipe.image;
+
           return { ...recipe, image };
         })
       );
@@ -413,13 +417,11 @@ const RecipeContext = ({ children }) => {
 
     loadData();
   }, []);
+
   useEffect(() => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
   }, [favourites]);
 
-  useEffect(() => {
-    localStorage.setItem("Recipes", JSON.stringify(data));
-  }, [data]);
 
 
   return (
@@ -428,7 +430,6 @@ const RecipeContext = ({ children }) => {
     >
       {children}
     </recipeContext.Provider>
-
   );
 };
 
