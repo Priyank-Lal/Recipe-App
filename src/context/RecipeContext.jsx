@@ -368,7 +368,6 @@ const RecipeContext = ({ children }) => {
     }
   });
 
-
   useEffect(() => {
     const saved = localStorage.getItem("Recipes");
     let baseData = [];
@@ -384,7 +383,7 @@ const RecipeContext = ({ children }) => {
     });
 
     setData(baseData);
-    localStorage.setItem("Recipes", JSON.stringify(baseData)); // ← set once after combining
+    localStorage.setItem("Recipes", JSON.stringify(baseData)); 
   }, []);
 
   useEffect(() => {
