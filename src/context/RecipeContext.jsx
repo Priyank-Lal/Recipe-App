@@ -384,12 +384,15 @@ const RecipeContext = ({ children }) => {
       return url; // fallback to original if compression fails
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem("Recipes", JSON.stringify(data));
+  }, [data]); 
   useEffect(() => {
     const loadData = () => {
       const saved = localStorage.getItem("Recipes");
       let baseData = saved ? JSON.parse(saved) : [...featuredRecipes];
 
-      // Add any missing featured recipes
       featuredRecipes.forEach((featured) => {
         if (!baseData.some((r) => r.id === featured.id)) {
           baseData.push(featured);
@@ -407,9 +410,7 @@ const RecipeContext = ({ children }) => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
   }, [favourites]);
 
-  useEffect(() => {
-    localStorage.setItem("Recipes", JSON.stringify(data));
-  }, [data]); // 🔁 Triggers on data change
+ 
 
   return (
     <recipeContext.Provider
