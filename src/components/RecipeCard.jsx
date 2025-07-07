@@ -63,6 +63,9 @@ const RecipeCard = ({ recipe }) => {
             whileTap={{ scale: 0.9 }}
             className="bg-white rounded-full p-2 shadow-md hover:bg-red-50 cursor-pointer"
             onClick={toggleFavourite}
+            aria-label={
+              isFavourite ? "Remove from favourites" : "Add to favourites"
+            }
           >
             <Heart
               className={`h-5 w-5 ${
@@ -101,15 +104,15 @@ const RecipeCard = ({ recipe }) => {
           </div>
         </div>
 
-        <Link to={`/recipes/details/${id}`} className="mt-2">
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="w-full bg-emerald-600 text-white py-2.5 rounded-xl font-medium hover:bg-emerald-700 transition cursor-pointer"
+        <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+          <Link
+            to={`/recipes/details/${id}`}
+            aria-label={`View details for ${title} recipe`}
+            className="block w-full bg-emerald-600 text-white py-2.5 rounded-xl font-medium hover:bg-emerald-700 transition text-center"
           >
             View Recipe
-          </motion.button>
-        </Link>
+          </Link>
+        </motion.div>
       </div>
     </motion.div>
   );

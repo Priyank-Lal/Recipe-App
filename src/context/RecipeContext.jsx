@@ -9,7 +9,10 @@ import mushroomSoup from "../images/mushroomSoup.webp";
 import pancake from "../images/pancake.webp";
 import paneerTikka from "../images/pannerTikka.webp";
 import sushi from "../images/sushi.webp";
-
+import salmonBowl from "../images/salmonBowl.webp";
+import mediterraneanSalad from "../images/mediterraneanSalad.webp";
+import garlicPasta from "../images/garlicPasta.webp";
+import cake from "../images/cake.webp";
 
 export const recipeContext = createContext(null);
 
@@ -295,80 +298,75 @@ const RecipeContext = ({ children }) => {
     }
   });
 
-  const featuredRecipes = [
-    {
-      id: "20",
-      title: "Creamy Garlic Pasta",
-      description:
-        "Rich and creamy pasta with roasted garlic and parmesan cheese",
-      image:
-        "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600",
-      time: "20 mins",
-      servings: 4,
-      category: "Dinner",
-      taste: "Savory",
-      cuisine: "Italian",
-      chef: "Gianna Russo",
-      ingredients:
-        "Spaghetti, Garlic, Heavy cream, Parmesan cheese, Butter, Salt, Pepper",
-      instructions:
-        "Cook spaghetti. Sauté minced garlic in butter. Add cream, simmer, then add Parmesan. Toss in cooked pasta and season with salt and pepper.",
-    },
-    {
-      id: "17",
-      title: "Grilled Salmon Bowl",
-      description: "Fresh grilled salmon with quinoa, avocado, and vegetables",
-      image:
-        "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600",
-      time: "30 mins",
-      servings: 2,
-      category: "Healthy",
-      taste: "Fresh",
-      cuisine: "Mediterranean",
-      chef: "Noah Bennett",
-      ingredients:
-        "Salmon fillets, Quinoa, Avocado, Cucumber, Cherry tomatoes, Olive oil, Lemon juice, Salt, Pepper",
-      instructions:
-        "Grill seasoned salmon fillets. Cook quinoa. Prepare a bowl with sliced avocado, cucumber, tomatoes, and quinoa. Top with salmon and drizzle with olive oil and lemon.",
-    },
-    {
-      id: "18",
-      title: "Chocolate Lava Cake",
-      description:
-        "Decadent chocolate cake with molten center and vanilla ice cream",
-      image:
-        "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&w=600",
-      time: "45 mins",
-      servings: 6,
-      category: "Dessert",
-      taste: "Sweet",
-      cuisine: "French",
-      chef: "Clara Dubois",
-      ingredients:
-        "Dark chocolate, Butter, Eggs, Sugar, Flour, Vanilla extract",
-      instructions:
-        "Melt chocolate and butter. Whisk eggs and sugar until fluffy. Fold in chocolate mixture and flour. Pour into ramekins and bake until edges are firm but center is gooey.",
-    },
-    {
-      id: "19",
-      title: "Mediterranean Salad",
-      description:
-        "Fresh vegetables, olives, feta cheese with olive oil dressing",
-      image:
-        "https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=600",
-      time: "15 mins",
-      servings: 3,
-      category: "Salad",
-      taste: "Tangy",
-      cuisine: "Greek",
-      chef: "Yannis Kostas",
-      ingredients:
-        "Cucumber, Cherry tomatoes, Red onion, Kalamata olives, Feta cheese, Olive oil, Lemon juice, Oregano, Salt, Pepper",
-      instructions:
-        "Chop all vegetables. Mix in olives and feta. Whisk together olive oil, lemon juice, oregano, salt and pepper. Toss salad with dressing before serving.",
-    },
-  ];
-
+   const featuredRecipes = [
+     {
+       id: "20",
+       title: "Creamy Garlic Pasta",
+       description:
+         "Rich and creamy pasta with roasted garlic and parmesan cheese",
+       image: garlicPasta,
+       time: "20 mins",
+       servings: 4,
+       category: "Dinner",
+       taste: "Savory",
+       cuisine: "Italian",
+       chef: "Gianna Russo",
+       ingredients:
+         "Spaghetti, Garlic, Heavy cream, Parmesan cheese, Butter, Salt, Pepper",
+       instructions:
+         "Cook spaghetti. Sauté minced garlic in butter. Add cream, simmer, then add Parmesan. Toss in cooked pasta and season with salt and pepper.",
+     },
+     {
+       id: "17",
+       title: "Grilled Salmon Bowl",
+       description: "Fresh grilled salmon with quinoa, avocado, and vegetables",
+       image: salmonBowl,
+       time: "30 mins",
+       servings: 2,
+       category: "Healthy",
+       taste: "Fresh",
+       cuisine: "Mediterranean",
+       chef: "Noah Bennett",
+       ingredients:
+         "Salmon fillets, Quinoa, Avocado, Cucumber, Cherry tomatoes, Olive oil, Lemon juice, Salt, Pepper",
+       instructions:
+         "Grill seasoned salmon fillets. Cook quinoa. Prepare a bowl with sliced avocado, cucumber, tomatoes, and quinoa. Top with salmon and drizzle with olive oil and lemon.",
+     },
+     {
+       id: "18",
+       title: "Chocolate Lava Cake",
+       description:
+         "Decadent chocolate cake with molten center and vanilla ice cream",
+       image: cake,
+       time: "45 mins",
+       servings: 6,
+       category: "Dessert",
+       taste: "Sweet",
+       cuisine: "French",
+       chef: "Clara Dubois",
+       ingredients:
+         "Dark chocolate, Butter, Eggs, Sugar, Flour, Vanilla extract",
+       instructions:
+         "Melt chocolate and butter. Whisk eggs and sugar until fluffy. Fold in chocolate mixture and flour. Pour into ramekins and bake until edges are firm but center is gooey.",
+     },
+     {
+       id: "19",
+       title: "Mediterranean Salad",
+       description:
+         "Fresh vegetables, olives, feta cheese with olive oil dressing",
+       image: mediterraneanSalad,
+       time: "15 mins",
+       servings: 3,
+       category: "Salad",
+       taste: "Tangy",
+       cuisine: "Greek",
+       chef: "Yannis Kostas",
+       ingredients:
+         "Cucumber, Cherry tomatoes, Red onion, Kalamata olives, Feta cheese, Olive oil, Lemon juice, Oregano, Salt, Pepper",
+       instructions:
+         "Chop all vegetables. Mix in olives and feta. Whisk together olive oil, lemon juice, oregano, salt and pepper. Toss salad with dressing before serving.",
+     },
+   ];
   const compressImage = async (url) => {
     try {
       const res = await fetch(url);

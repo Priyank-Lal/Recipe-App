@@ -4,11 +4,15 @@ import { useContext } from "react";
 import { recipeContext } from "../context/RecipeContext";
 import { Clock, Users, Heart, UtensilsCrossed } from "lucide-react";
 import { toast } from "react-toastify";
+import salmonBowl from "../images/salmonBowl.webp";
+import mediterraneanSalad from "../images/mediterraneanSalad.webp";
+import garlicPasta from "../images/garlicPasta.webp";
+import cake from "../images/cake.webp";
+
 
 
 const FeaturedRecipes = () => {
-  const { favourites, setFavourites } =
-    useContext(recipeContext);
+  const { favourites, setFavourites } = useContext(recipeContext);
 
   const featuredRecipes = [
     {
@@ -16,8 +20,7 @@ const FeaturedRecipes = () => {
       title: "Creamy Garlic Pasta",
       description:
         "Rich and creamy pasta with roasted garlic and parmesan cheese",
-      image:
-        "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: garlicPasta,
       time: "20 mins",
       servings: 4,
       category: "Dinner",
@@ -33,8 +36,7 @@ const FeaturedRecipes = () => {
       id: "17",
       title: "Grilled Salmon Bowl",
       description: "Fresh grilled salmon with quinoa, avocado, and vegetables",
-      image:
-        "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: salmonBowl,
       time: "30 mins",
       servings: 2,
       category: "Healthy",
@@ -51,8 +53,7 @@ const FeaturedRecipes = () => {
       title: "Chocolate Lava Cake",
       description:
         "Decadent chocolate cake with molten center and vanilla ice cream",
-      image:
-        "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: cake,
       time: "45 mins",
       servings: 6,
       category: "Dessert",
@@ -69,8 +70,7 @@ const FeaturedRecipes = () => {
       title: "Mediterranean Salad",
       description:
         "Fresh vegetables, olives, feta cheese with olive oil dressing",
-      image:
-        "https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: mediterraneanSalad,
       time: "15 mins",
       servings: 3,
       category: "Salad",
@@ -140,7 +140,6 @@ const FeaturedRecipes = () => {
                 toast.success("Added to Favourites!");
               }
             };
-            
 
             return (
               <motion.div
@@ -162,6 +161,11 @@ const FeaturedRecipes = () => {
                       whileTap={{ scale: 0.9 }}
                       className="bg-white rounded-full p-2 shadow-md hover:bg-red-50 cursor-pointer"
                       onClick={toggleFavourite}
+                      aria-label={
+                        isFavourite
+                          ? "Remove from favourites"
+                          : "Add to favourites"
+                      }
                     >
                       <Heart
                         className={`h-5 w-5 ${
@@ -201,16 +205,18 @@ const FeaturedRecipes = () => {
                       <span>{recipe.cuisine}</span>
                     </div>
                   </div>
-
-                  <Link to={`/recipes/details/${recipe.id}`} className="mt-2">
-                    <motion.button
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                      className="w-full bg-emerald-600 text-white py-2.5 rounded-xl font-medium hover:bg-emerald-700 transition cursor-pointer"
+                  <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    <Link
+                      to={`/recipes/details/${recipe.id}`}
+                      aria-label={`View details for ${recipe.title} recipe`}
+                      className="block w-full bg-emerald-600 text-white py-2.5 rounded-xl font-medium hover:bg-emerald-700 transition text-center"
                     >
                       View Recipe
-                    </motion.button>
-                  </Link>
+                    </Link>
+                  </motion.div>
                 </div>
               </motion.div>
             );
