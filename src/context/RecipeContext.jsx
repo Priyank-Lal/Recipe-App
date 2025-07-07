@@ -384,7 +384,6 @@ const RecipeContext = ({ children }) => {
       return url; // fallback to original if compression fails
     }
   };
-
   useEffect(() => {
     const loadData = () => {
       const saved = localStorage.getItem("Recipes");
@@ -403,11 +402,14 @@ const RecipeContext = ({ children }) => {
 
     loadData();
   }, []);
-  
 
   useEffect(() => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
   }, [favourites]);
+
+  useEffect(() => {
+    localStorage.setItem("Recipes", JSON.stringify(data));
+  }, [data]); // 🔁 Triggers on data change
 
   return (
     <recipeContext.Provider
