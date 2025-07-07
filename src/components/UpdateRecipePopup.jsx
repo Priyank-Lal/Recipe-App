@@ -1,122 +1,216 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import Button from "@mui/material/Button";
-import { CloudUpload } from "@mui/icons-material";
+import {
+  TextField,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Button,
+  InputAdornment,
+} from "@mui/material";
 import { recipeContext } from "../context/RecipeContext";
 import { toast } from "react-toastify";
+import imageCompression from "browser-image-compression";
+import UpdateImagePopup from "./UpdateImagePopUp";
+import { AnimatePresence, motion } from "framer-motion";
 
 const UpdateRecipePopup = ({ visible, recipeData, data, id }) => {
   const { setData } = useContext(recipeContext);
   const [file, setFile] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const { register, handleSubmit, reset } = useForm();
+  const [selectedCategory, setSelectedCategory] = useState(
+    recipeData.category || ""
+  );
+  const [tasteValue, setTasteValue] = useState(recipeData.taste || "");
   const [updateImage, setUpdateImage] = useState(false);
-  useState(() => {
-    setSelectedCategory(recipeData.category);
-  }, []);
+  const [imageURL, setImageURL] = useState("");
+  const [showImagePopup, setShowImagePopup] = useState(false);
 
-  function findIndexById(arr, id) {
-    return arr.findIndex((item) => item.id === id);
-  }
+  const { register, handleSubmit, reset } = useForm();
 
-  const sumbitHandler = (recipe) => {
+  const findIndexById = (arr, id) => arr.findIndex((item) => item.id === id);
+
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  const sumbitHandler = async (recipe) => {
     const index = findIndexById(data, id);
-    const copyrecipeData = [...data];
-    copyrecipeData[index] = { ...copyrecipeData[index], ...recipe };
-    setData(copyrecipeData);
-    localStorage.setItem("Recipes", JSON.stringify(copyrecipeData));
-    toast.success("Recipe Updated");
+    const updatedData = [...data];
+
+    if (updateImage) {
+      if (file && typeof file !== "string") {
+        const compressed = await imageCompression(file, {
+          maxSizeMB: 0.4,
+          maxWidthOrHeight: 800,
+          useWebWorker: true,
+        });
+        recipe.image = await toBase64(compressed);
+      } else if (typeof file === "string") {
+        recipe.image = file;
+      } else if (imageURL) {
+        recipe.image = imageURL;
+      }
+    } else {
+      recipe.image = recipeData.image;
+    }
+
+    recipe.category = selectedCategory;
+    recipe.taste = tasteValue;
+
+    updatedData[index] = { ...updatedData[index], ...recipe };
+    setData(updatedData);
+    localStorage.setItem("Recipes", JSON.stringify(updatedData));
+    toast.success("Recipe Updated!");
     visible(false);
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    if (e.recipeDataTransfer.files && e.recipeDataTransfer.files[0]) {
-      setFile(e.recipeDataTransfer.files[0]);
-    }
-  };
-
-  const handleChange = (e) => {
-    if (e.target.files[0]) {
-      setFile(e.target.files[0]);
-    }
-  };
-
   return (
-    <div className="bg-white rounded-xl shadow-2xl p-6 w-6xl z-99 fixed top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] ">
-      <h2 className="text-2xl font-bold text-green-700 mb-6">Update Recipe</h2>
-      <form className="flex gap-8" onSubmit={handleSubmit(sumbitHandler)}>
-        {/* Left column: Form Inputs (approx. 70%) */}
-        <div className="w-[65%] flex flex-col gap-6">
+    <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-5xl max-h-[90vh] overflow-y-auto z-50 fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
+      <h2 className="text-3xl font-bold text-green-700 mb-8 text-center">
+        Update Recipe
+      </h2>
+
+      {/* Main Form */}
+      <form
+        onSubmit={handleSubmit(sumbitHandler)}
+        className="flex flex-col gap-8"
+      >
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
           <TextField
-            fullWidth
-            color="success"
             label="Recipe Title"
-            variant="outlined"
+            color="success"
+            fullWidth
             {...register("title")}
-            defaultValue={recipeData?.title}
+            defaultValue={recipeData.title}
+            required
           />
+
           <TextField
-            fullWidth
-            color="success"
             label="Chef's Name"
-            variant="outlined"
+            color="success"
+            fullWidth
             {...register("chef")}
-            defaultValue={recipeData?.chef}
+            defaultValue={recipeData.chef}
+            required
           />
+
           <TextField
-            fullWidth
+            label="Time"
             color="success"
-            label="Description"
-            multiline
-            rows={3}
-            {...register("description")}
-            defaultValue={recipeData?.description}
+            fullWidth
+            defaultValue={recipeData.time}
+            {...register("time")}
+            InputProps={{
+              endAdornment: <InputAdornment position="end">min</InputAdornment>,
+            }}
           />
+
           <TextField
-            fullWidth
+            label="Servings"
+            type="number"
             color="success"
-            label="Ingredients"
-            multiline
-            rows={3}
-            {...register("ingredients")}
-            defaultValue={recipeData?.ingredients}
+            fullWidth
+            defaultValue={recipeData.servings}
+            {...register("servings")}
           />
+
           <TextField
-            fullWidth
+            label="Cuisine"
             color="success"
-            label="Instructions"
-            multiline
-            rows={3}
-            {...register("instructions")}
-            defaultValue={recipeData?.instructions}
+            fullWidth
+            defaultValue={recipeData.cuisine}
+            {...register("cuisine")}
           />
+
           <FormControl fullWidth>
             <InputLabel>Category</InputLabel>
             <Select
               color="success"
               value={selectedCategory}
-              {...register("category")}
               onChange={(e) => setSelectedCategory(e.target.value)}
+              required
             >
               <MenuItem value="Breakfast">Breakfast</MenuItem>
               <MenuItem value="Lunch">Lunch</MenuItem>
               <MenuItem value="Supper">Supper</MenuItem>
               <MenuItem value="Dinner">Dinner</MenuItem>
+              <MenuItem value="Snacks">Snacks</MenuItem>
+              <MenuItem value="Dessert">Dessert</MenuItem>
             </Select>
           </FormControl>
-          <div className="flex justify-end gap-4 mt-4">
-            <Button color="success" variant="contained" type="submit">
+
+          <FormControl fullWidth>
+            <InputLabel>Taste</InputLabel>
+            <Select
+              color="success"
+              value={tasteValue}
+              onChange={(e) => setTasteValue(e.target.value)}
+              required
+            >
+              <MenuItem value="Spicy">Spicy</MenuItem>
+              <MenuItem value="Sweet">Sweet</MenuItem>
+              <MenuItem value="Savory">Savory</MenuItem>
+              <MenuItem value="Tangy">Tangy</MenuItem>
+              <MenuItem value="Bland">Bland</MenuItem>
+            </Select>
+          </FormControl>
+
+          <TextField
+            label="Description"
+            multiline
+            rows={3}
+            fullWidth
+            color="success"
+            {...register("description")}
+            defaultValue={recipeData.description}
+            required
+          />
+
+          <TextField
+            label="Ingredients"
+            multiline
+            rows={3}
+            fullWidth
+            color="success"
+            {...register("ingredients")}
+            defaultValue={recipeData.ingredients}
+            required
+          />
+
+          <TextField
+            label="Instructions"
+            multiline
+            rows={3}
+            fullWidth
+            color="success"
+            {...register("instructions")}
+            defaultValue={recipeData.instructions}
+            required
+          />
+        </div>
+
+        {/* Buttons */}
+        <div className="flex justify-between items-center gap-4">
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => setShowImagePopup(true)}
+          >
+            Update Image
+          </Button>
+
+          <div className="flex gap-4">
+            <Button type="submit" variant="contained" color="success">
               Update
             </Button>
             <Button
-              color="error"
               variant="outlined"
+              color="error"
               onClick={() => {
                 reset();
                 visible(false);
@@ -126,98 +220,20 @@ const UpdateRecipePopup = ({ visible, recipeData, data, id }) => {
             </Button>
           </div>
         </div>
-
-        {/* Right column: Image Section (approx. 30%) */}
-        <div className="w-[35%] flex flex-col gap-6">
-          {updateImage && !file && (
-            <>
-              <div
-                className="h-[260px] bg-white rounded-xl border-2 border-dashed border-gray-300 px-6 py-8 text-center shadow-md transition hover:shadow-lg"
-                onDrop={handleDrop}
-                onDragOver={(e) => e.preventDefault()}
-              >
-                <div className="flex flex-col items-center justify-center gap-4 h-full">
-                  <div className="bg-green-100 p-4 rounded-full">
-                    <CloudUpload
-                      className="text-green-600"
-                      style={{ fontSize: 48 }} // Smaller icon
-                    />
-                  </div>
-                  <p className="text-lg font-semibold text-gray-700">
-                    Drop your food image here, or{" "}
-                    <label
-                      htmlFor="fileInput"
-                      className="text-green-600 underline cursor-pointer"
-                    >
-                      browse
-                    </label>
-                  </p>
-                  <p className="text-sm text-gray-400">
-                    JPG, PNG, or WEBP format | Any size
-                  </p>
-                  <input
-                    id="fileInput"
-                    type="file"
-                    accept="image/png, image/jpeg, image/webp"
-                    className="hidden"
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
-              <TextField
-                className="w-full rounded-2xl"
-                placeholder="Or paste Image URL here..."
-                {...register("image")}
-              />
-              <div className="w-full flex justify-end">
-                <Button
-                  variant="outlined"
-                  color="error"
-                  className="w-fit"
-                  onClick={() => {
-                    setUpdateImage(false);
-                  }}
-                >
-                  Cancel
-                </Button>
-              </div>
-            </>
-          )}
-
-          {file && (
-            <>
-              <img
-                src={URL.createObjectURL(file)}
-                alt="Preview"
-                className="h-[300px] object-cover rounded-xl shadow-md border border-gray-300"
-              />
-              <div className="w-full flex justify-center">
-                <Button
-                  onClick={() => setFile(null)}
-                  variant="contained"
-                  className="w-fit"
-                >
-                  Change Image
-                </Button>
-              </div>
-            </>
-          )}
-
-          {!updateImage && (
-            <>
-              <img
-                className="w-full h-[300px] object-cover border border-gray-300 rounded-xl"
-                src={recipeData?.image}
-                alt=""
-              />
-              <Button variant="contained" onClick={() => setUpdateImage(true)}>
-                Update Image
-              </Button>
-            </>
-          )}
-        </div>
       </form>
+
+      {showImagePopup && (
+        <div className="z-50 bg-white p-6 rounded-2xl shadow-2xl max-w-3xl w-full">
+          <UpdateImagePopup
+            existingImage={recipeData.image}
+            onClose={() => setShowImagePopup(false)}
+            onSave={(newImage) => {
+              recipeData.image = newImage;
+              setShowImagePopup(false);
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };

@@ -8,279 +8,356 @@ const RecipeContext = ({ children }) => {
       id: "1",
       title: "Classic Margherita Pizza",
       ingredients:
-        "Pizza dough, Tomato sauce, Fresh mozzarella cheese, Fresh basil leaves, Olive oil, Salt and pepper to taste",
+        "Pizza dough, Tomato sauce, Fresh mozzarella cheese, Fresh basil leaves, Olive oil, Salt and pepper",
       instructions:
-        "Preheat the oven to 475°F (245°C). Roll out the pizza dough and spread tomato sauce evenly. Top with slices of fresh mozzarella and fresh basil leaves. Drizzle with olive oil and season with salt and pepper. Bake in the preheated oven for 12-15 minutes or until the crust is golden brown. Slice and serve hot.",
+        "Preheat oven to 475°F. Roll out dough, spread sauce, top with mozzarella and basil, drizzle olive oil, bake 12‑15 min, slice and serve.",
       image: "https://cdn.dummyjson.com/recipe-images/1.webp",
       category: "Dinner",
       chef: "Rahul Kumar",
       description:
         "An Italian classic made with fresh ingredients and lots of love. Perfect for dinner!",
-      duration: "30 mins",
-      rating: 4.7,
-      reviewCount: 256,
+      time: "30 mins",
       taste: "Savory",
       cuisine: "Italian",
+      servings: 2,
     },
     {
       id: "2",
       title: "Chocolate Chip Cookies",
       ingredients:
-        "All-purpose flour, Butter (softened), Brown sugar, White sugar, Eggs, Vanilla extract, Baking soda, Salt, Chocolate chips",
+        "Flour, Butter, Brown sugar, White sugar, Eggs, Vanilla extract, Baking soda, Salt, Chocolate chips",
       instructions:
-        "Preheat the oven to 350°F (175°C). In a bowl, cream together softened butter, brown sugar, and white sugar. Beat in eggs one at a time, then stir in vanilla extract. Combine flour, baking soda, and salt. Gradually add to the wet ingredients. Fold in chocolate chips. Drop rounded tablespoons of dough onto ungreased baking sheets. Bake for 10-12 minutes or until edges are golden brown. Allow cookies to cool before transferring to a wire rack.",
+        "Preheat oven to 350°F. Cream butter and sugars, beat in eggs & vanilla. Combine dry ingredients, fold in chips, drop on baking sheet, bake 10‑12 min, cool.",
       image: "https://cdn.dummyjson.com/recipe-images/3.webp",
       category: "Dessert",
       chef: "Emma Watson",
       description: "Soft and chewy homemade cookies that everyone will love.",
-      duration: "25 mins",
-      rating: 4.9,
-      reviewCount: 13,
+      time: "25 mins",
       taste: "Sweet",
       cuisine: "American",
+      servings: 6,
     },
     {
       id: "4",
       title: "Chicken Alfredo Pasta",
       ingredients:
-        "Fettuccine pasta, Chicken breast (sliced), Heavy cream, Parmesan cheese (grated), Garlic (minced), Butter, Salt and pepper, Fresh parsley",
+        "Fettuccine, Chicken breast, Heavy cream, Parmesan cheese, Garlic, Butter, Salt, Pepper, Parsley",
       instructions:
-        "Cook fettuccine pasta according to package instructions. In a pan, sauté sliced chicken in butter until fully cooked. Add minced garlic and cook until fragrant. Pour in heavy cream and grated Parmesan cheese. Stir until melted. Season with salt and pepper. Combine with cooked pasta and garnish with parsley.",
+        "Cook pasta. Sauté chicken in butter, add garlic, pour cream & cheese, season, combine with pasta, garnish parsley.",
       image: "https://cdn.dummyjson.com/recipe-images/4.webp",
       category: "Dinner",
       chef: "Sophia Green",
       description:
         "Rich and creamy Alfredo pasta tossed with tender chicken pieces.",
-      duration: "35 mins",
-      rating: 4.9,
-      reviewCount: 82,
+      time: "35 mins",
       taste: "Savory",
       cuisine: "Italian",
+      servings: 4,
     },
     {
       id: "5",
       title: "Mango Salsa Chicken",
       ingredients:
-        "Chicken thighs, Mango (diced), Red onion (chopped), Cilantro (chopped), Lime juice, Jalapeño (minced), Salt and pepper, Cooked rice",
+        "Chicken thighs, Mango, Red onion, Cilantro, Lime juice, Jalapeño, Salt, Pepper, Cooked rice",
       instructions:
-        "Season chicken thighs with salt and pepper. Grill or bake chicken until cooked. In a bowl, mix diced mango, red onion, cilantro, jalapeño, and lime juice. Dice chicken and mix with salsa. Serve over cooked rice.",
+        "Season and grill chicken. Mix mango, onion, cilantro, jalapeño, lime. Dice chicken, toss in salsa, serve over rice.",
       image: "https://cdn.dummyjson.com/recipe-images/5.webp",
       category: "Dinner",
       chef: "Carlos Mendez",
       description: "Juicy grilled chicken served with fresh mango salsa.",
-      duration: "40 mins",
-      rating: 4.9,
-      reviewCount: 63,
+      time: "40 mins",
       taste: "Sweet & Spicy",
       cuisine: "Mexican",
+      servings: 4,
     },
     {
       id: "6",
       title: "Quinoa Salad with Avocado",
       ingredients:
-        "Cooked quinoa, Avocado (diced), Cherry tomatoes (halved), Cucumber (diced), Red bell pepper (diced), Feta cheese (crumbled), Lemon vinaigrette, Salt and pepper",
+        "Cooked quinoa, Avocado, Cherry tomatoes, Cucumber, Bell pepper, Feta cheese, Lemon vinaigrette, Salt, Pepper",
       instructions:
-        "Combine quinoa, avocado, cherry tomatoes, cucumber, bell pepper, and feta cheese in a bowl. Drizzle with lemon vinaigrette and toss. Season with salt and pepper. Chill before serving.",
+        "Combine all ingredients in bowl, drizzle vinaigrette, toss, season, chill and serve.",
       image: "https://cdn.dummyjson.com/recipe-images/6.webp",
       category: "Lunch",
       chef: "Isabella Rose",
       description: "A light, healthy salad full of flavor and nutrients.",
-      duration: "30 mins",
-      rating: 4.4,
-      reviewCount: 59,
+      time: "30 mins",
       taste: "Fresh",
       cuisine: "Mediterranean",
+      servings: 3,
     },
     {
       id: "7",
       title: "Tomato Basil Bruschetta",
       ingredients:
-        "Baguette (sliced), Tomatoes (diced), Fresh basil (chopped), Garlic (minced), Balsamic glaze, Olive oil, Salt and pepper",
+        "Baguette, Tomatoes, Basil, Garlic, Balsamic glaze, Olive oil, Salt, Pepper",
       instructions:
-        "Preheat oven to 375°F (190°C). Toast baguette slices. In a bowl, mix tomatoes, basil, garlic, olive oil, salt and pepper. Top each toast with the mixture. Drizzle with balsamic glaze.",
+        "Toast baguette slices. Mix tomatoes, basil, garlic, olive oil, salt & pepper. Top toast, drizzle balsamic, serve.",
       image: "https://cdn.dummyjson.com/recipe-images/7.webp",
       category: "Appetizer",
       chef: "Marco Rossi",
       description:
         "Crunchy bruschetta topped with fresh tomato and basil mixture.",
-      duration: "25 mins",
-      rating: 4.7,
-      reviewCount: 95,
+      time: "25 mins",
       taste: "Savory",
       cuisine: "Italian",
+      servings: 4,
     },
     {
       id: "8",
-      title: "Beef and Broccoli Stir-Fry",
+      title: "Beef and Broccoli Stir‑Fry",
       ingredients:
-        "Beef sirloin (thinly sliced), Broccoli florets, Soy sauce, Oyster sauce, Sesame oil, Garlic (minced), Ginger (minced), Cornstarch, Cooked white rice",
+        "Beef sirloin, Broccoli florets, Soy sauce, Oyster sauce, Sesame oil, Garlic, Ginger, Cornstarch, Rice",
       instructions:
-        "Mix soy sauce, oyster sauce, sesame oil, and cornstarch. Stir-fry beef until browned. Remove. Stir-fry broccoli, garlic, and ginger. Return beef and add sauce. Mix well and serve over rice.",
+        "Mix sauce. Stir‑fry beef, remove. Stir‑fry broccoli with garlic & ginger. Return beef, add sauce, serve over rice.",
       image: "https://cdn.dummyjson.com/recipe-images/8.webp",
       category: "Dinner",
       chef: "Li Wang",
       description:
-        "Classic Asian stir-fry with tender beef and fresh broccoli.",
-      duration: "35 mins",
-      rating: 4.7,
-      reviewCount: 58,
+        "Classic Asian stir‑fry with tender beef and fresh broccoli.",
+      time: "35 mins",
       taste: "Umami",
       cuisine: "Asian",
+      servings: 4,
     },
     {
       id: "9",
       title: "Spicy Paneer Tikka",
       ingredients:
-        "Paneer cubes, Yogurt, Ginger-garlic paste, Red chili powder, Garam masala, Lemon juice, Salt, Bell peppers, Onion",
+        "Paneer cubes, Yogurt, Ginger‑garlic paste, Chili powder, Garam masala, Lemon juice, Salt, Bell peppers, Onion",
       instructions:
-        "In a bowl, mix yogurt, ginger-garlic paste, spices, and lemon juice. Marinate paneer and veggies for 1 hour. Skewer paneer and vegetables alternately. Grill or bake at 200°C for 15-20 mins until charred. Serve with mint chutney.",
+        "Marinate paneer & veggies in spiced yogurt. Skewer, grill at 200 °C for 15‑20 min. Serve with mint chutney.",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMe8NRDNujsBstrK8GUNBRDnGLRnAjs9MPMA&s",
+        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/75e7536c2dbe401796f98236cea34f81.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T060727Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=0a420c530502534bb4bd17800c59a2200ad06ee72e3bd99a00f85cafba9ee673",
       category: "Appetizer",
       chef: "Aarav Mehta",
       description:
         "A popular Indian appetizer made with marinated paneer and veggies grilled to perfection.",
-      duration: "45 mins",
-      rating: 4.6,
-      reviewCount: 110,
+      time: "45 mins",
       taste: "Spicy",
       cuisine: "Indian",
+      servings: 4,
     },
     {
       id: "10",
       title: "Avocado Toast with Egg",
       ingredients:
-        "Bread slices, Ripe avocados, Lemon juice, Salt, Black pepper, Red chili flakes, Poached egg",
+        "Bread, Avocado, Lemon juice, Salt, Pepper, Chili flakes, Poached egg",
       instructions:
-        "Toast the bread until crispy. Mash avocado with lemon juice, salt, and pepper. Spread on toast. Top with poached egg and sprinkle chili flakes. Serve immediately.",
+        "Toast bread. Mash avocado with lemon, salt & pepper. Spread on toast, top with poached egg & chili flakes.",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQOvqRpQDxJbK8xbpBwuxRuzsxVSsdaDGxaQ&s",
+        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/8f6ed2d2078c4be3909da9c155eacdf1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T060636Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10799&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=9dec71501872462190b5f4ca03dc9f727ac45d05c548d2b281ca7368f31e604e",
       category: "Breakfast",
       chef: "Liam Turner",
       description:
         "A quick and healthy breakfast with creamy avocado and a perfectly poached egg.",
-      duration: "15 mins",
-      rating: 4.8,
-      reviewCount: 89,
+      time: "15 mins",
       taste: "Savory",
       cuisine: "American",
+      servings: 1,
     },
     {
       id: "11",
       title: "Sushi Rolls",
       ingredients:
-        "Sushi rice, Nori sheets, Cucumber, Avocado, Crab sticks, Rice vinegar, Soy sauce, Wasabi",
+        "Sushi rice, Nori, Cucumber, Avocado, Crab sticks, Vinegar, Soy sauce, Wasabi",
       instructions:
-        "Cook and season sushi rice. Place nori on mat, spread rice evenly. Add fillings. Roll tightly and slice with a sharp knife. Serve with soy sauce and wasabi.",
+        "Cook rice, season. Place nori, spread rice, add fillings, roll, slice, serve with soy and wasabi.",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIKDPBk5NhlHhutniIVNVZ80RyHdyLzmFIkA&s",
+        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/1140a074c6744178be1db5558d8289a6.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T060358Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=2a804ec51988513ce9ba45a97de48a52fb524af114c47bc7ecd47d35ec1cdfab",
       category: "Dinner",
       chef: "Hiroshi Tanaka",
       description:
         "Delicious homemade sushi rolls with a balance of fresh ingredients and flavor.",
-      duration: "50 mins",
-      rating: 4.7,
-      reviewCount: 102,
+      time: "50 mins",
       taste: "Umami",
       cuisine: "Japanese",
+      servings: 6,
     },
     {
       id: "12",
       title: "Creamy Mushroom Soup",
       ingredients:
-        "Mushrooms, Onion, Garlic, Butter, Vegetable broth, Heavy cream, Salt, Black pepper, Thyme",
+        "Mushrooms, Onion, Garlic, Butter, Broth, Cream, Salt, Pepper, Thyme",
       instructions:
-        "Sauté mushrooms, onion, and garlic in butter. Add broth and simmer. Blend until smooth. Add cream, season, and heat gently. Serve hot with toast.",
+        "Sauté mushrooms, onion, garlic in butter. Add broth, simmer, blend. Add cream, season, serve hot.",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM5KCZ3tE858lTSbHUpmJjXyvR0LmirCKLfA&s",
+        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/a9d043cf7308420d8a47d1a4feec1e2f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T061149Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=2e67713bd954a12e95ca38ccf1fe6d69c506fc0d1dc23fd35ea0f47d0904d283",
       category: "Lunch",
       chef: "Isla Morgan",
       description:
         "A comforting creamy soup packed with the rich flavor of fresh mushrooms.",
-      duration: "35 mins",
-      rating: 4.5,
-      reviewCount: 76,
+      time: "35 mins",
       taste: "Savory",
       cuisine: "French",
+      servings: 4,
     },
     {
       id: "13",
       title: "Pancakes with Maple Syrup",
       ingredients:
-        "All-purpose flour, Eggs, Milk, Baking powder, Butter, Sugar, Salt, Maple syrup",
+        "Flour, Eggs, Milk, Baking powder, Butter, Sugar, Salt, Maple syrup",
       instructions:
-        "Whisk flour, sugar, baking powder, and salt. Mix eggs, milk, and butter separately. Combine wet and dry ingredients. Cook on a hot griddle until golden. Serve with maple syrup.",
+        "Mix wet & dry ingredients. Cook on griddle until golden. Serve with maple syrup.",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTaNViGP8myfMtCU8kk6V_33Bu_wTy7cS3lg&s",
+        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/ff60d1b4949f4cd0b33450542c40e1d0.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T061219Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=d74a748b0aeb132d31b237f5081138bf4fd3a231324a32be180c0575980b069f",
       category: "Breakfast",
       chef: "Olivia Brown",
       description:
         "Fluffy pancakes served with a generous drizzle of maple syrup – perfect weekend breakfast!",
-      duration: "20 mins",
-      rating: 4.9,
-      reviewCount: 134,
+      time: "20 mins",
       taste: "Sweet",
       cuisine: "American",
+      servings: 4,
     },
     {
       id: "14",
       title: "Tandoori Chicken",
       ingredients:
-        "Chicken drumsticks, Yogurt, Lemon juice, Ginger-garlic paste, Red chili powder, Garam masala, Cumin powder, Salt, Mustard oil",
+        "Chicken drumsticks, Yogurt, Lemon juice, Ginger‑garlic paste, Spices, Mustard oil",
       instructions:
-        "Mix yogurt, spices, ginger-garlic paste, and lemon juice. Marinate chicken for 6-8 hours. Grill or bake at 220°C for 30 mins until charred. Serve hot with onion rings and lemon wedges.",
+        "Marinate chicken for 6‑8 hrs, grill or bake at 220 °C for 30 min. Serve with onion & lemon.",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVjiAxC3ahbiOQ-tvNJYDteQcUYi3GahDnMQ&s",
+        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/bfd1bb9578314a5db664fbe0335878d6.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T061058Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=58d4ce1cd9b64d55fa6da10a265843c2234b839ac9d0df6bb534c1c0f418270a",
       category: "Dinner",
       chef: "Rajeev Sharma",
       description:
         "Smoky, spicy and juicy grilled chicken — a true Indian classic.",
-      duration: "50 mins (plus marination)",
-      rating: 4.8,
-      reviewCount: 176,
+      time: "50 mins",
       taste: "Spicy",
       cuisine: "Indian",
+      servings: 4,
     },
     {
       id: "15",
       title: "Greek Salad",
       ingredients:
-        "Cucumber, Tomatoes, Red onion, Kalamata olives, Feta cheese, Olive oil, Lemon juice, Oregano, Salt, Pepper",
+        "Cucumber, Tomatoes, Onion, Olives, Feta, Olive oil, Lemon juice, Oregano",
       instructions:
-        "Chop cucumber, tomatoes, onion. Mix with olives and feta. Drizzle olive oil, lemon juice, and oregano. Toss well and serve fresh.",
+        "Chop veggies, mix with olives & feta, drizzle oil & lemon, toss well, serve.",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUeEtG_pS-BxJLb4lclUicJXkT4aHooDIkyw&s",
+        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/77f8fc19c3224ce0a13869d21d79e36a.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T061253Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=edce4beabdedd63510ef99bb71d218676151bb7176e31194829010f4b595e104",
       category: "Lunch",
       chef: "Nikos Papadopoulos",
       description:
         "A refreshing and healthy salad bursting with Mediterranean flavors.",
-      duration: "15 mins",
-      rating: 4.6,
-      reviewCount: 97,
+      time: "15 mins",
       taste: "Fresh",
       cuisine: "Greek",
+      servings: 3,
     },
     {
       id: "16",
       title: "Butter Chicken",
       ingredients:
-        "Boneless chicken, Butter, Tomato puree, Cream, Garlic, Ginger, Garam masala, Red chili powder, Fenugreek leaves, Salt",
+        "Boneless chicken, Butter, Tomato puree, Cream, Garlic, Ginger, Spices, Fenugreek leaves",
       instructions:
-        "Cook marinated chicken. In another pan, cook tomato puree with spices and butter. Add cream and chicken. Simmer and finish with fenugreek leaves. Serve with naan.",
+        "Cook chicken, prepare creamy tomato sauce, combine and simmer with fenugreek, serve with naan.",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0MoQGlq3WXHRDTZXKNe4b5HMD_WGuJA5CBA&s",
+        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/8a9e22c31f424e63a407fe2b7558a0b8.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T061327Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=6bc637f714f9bf5f81d4710e51187e26a8535127b138759f80c44582ae8f9a0c",
       category: "Dinner",
       chef: "Neha Kapoor",
       description:
         "Creamy, rich and mildly spiced chicken curry — a restaurant-style treat at home.",
-      duration: "45 mins",
-      rating: 4.9,
-      reviewCount: 204,
+      time: "45 mins",
       taste: "Rich & Spicy",
       cuisine: "Indian",
+      servings: 4,
+    },
+    {
+      id: "21",
+      title: "Chicken Biryani",
+      description:
+        "A fragrant and flavorful Indian rice dish made with marinated chicken, aromatic spices, and basmati rice, layered and cooked to perfection.",
+      image:
+        "https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2025/07/07/5a706e05bad6423d8bbe5b2d3022077e.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250707T061451Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20250707%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=023324698feeee1aa6812f818ba4fb0851ffb28fabbe305845d08a9689abddda",
+      category: "Dinner",
+      chef: "Zainab Khan",
+      time: "60 mins",
+      servings: 4,
+      taste: "Spicy",
+      cuisine: "Indian",
+      ingredients:
+        "Basmati rice, Chicken (bone-in), Yogurt, Onions, Tomatoes, Garlic, Ginger, Green chilies, Biryani masala, Turmeric, Red chili powder, Coriander powder, Garam masala, Fresh coriander, Mint leaves, Ghee, Oil, Salt, Saffron (optional), Milk",
+      instructions:
+        "Marinate chicken in yogurt, spices, ginger-garlic paste. Fry onions until golden. Add tomatoes and cook until soft. Add marinated chicken and cook until done. Boil basmati rice with whole spices until 70% cooked. In a pot, layer rice and chicken alternately. Add fried onions, coriander, mint, saffron milk. Cover tightly and cook on low heat for 20–25 mins (dum). Serve hot with raita or salad.",
     },
   ]);
-  
+
+  const featuredRecipes = [
+    {
+      id: "20",
+      title: "Creamy Garlic Pasta",
+      description:
+        "Rich and creamy pasta with roasted garlic and parmesan cheese",
+      image:
+        "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600",
+      time: "20 mins",
+      servings: 4,
+      category: "Dinner",
+      taste: "Savory",
+      cuisine: "Italian",
+      chef: "Gianna Russo",
+      ingredients:
+        "Spaghetti, Garlic, Heavy cream, Parmesan cheese, Butter, Salt, Pepper",
+      instructions:
+        "Cook spaghetti. Sauté minced garlic in butter. Add cream, simmer, then add Parmesan. Toss in cooked pasta and season with salt and pepper.",
+    },
+    {
+      id: "17",
+      title: "Grilled Salmon Bowl",
+      description: "Fresh grilled salmon with quinoa, avocado, and vegetables",
+      image:
+        "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600",
+      time: "30 mins",
+      servings: 2,
+      category: "Healthy",
+      taste: "Fresh",
+      cuisine: "Mediterranean",
+      chef: "Noah Bennett",
+      ingredients:
+        "Salmon fillets, Quinoa, Avocado, Cucumber, Cherry tomatoes, Olive oil, Lemon juice, Salt, Pepper",
+      instructions:
+        "Grill seasoned salmon fillets. Cook quinoa. Prepare a bowl with sliced avocado, cucumber, tomatoes, and quinoa. Top with salmon and drizzle with olive oil and lemon.",
+    },
+    {
+      id: "18",
+      title: "Chocolate Lava Cake",
+      description:
+        "Decadent chocolate cake with molten center and vanilla ice cream",
+      image:
+        "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&w=600",
+      time: "45 mins",
+      servings: 6,
+      category: "Dessert",
+      taste: "Sweet",
+      cuisine: "French",
+      chef: "Clara Dubois",
+      ingredients:
+        "Dark chocolate, Butter, Eggs, Sugar, Flour, Vanilla extract",
+      instructions:
+        "Melt chocolate and butter. Whisk eggs and sugar until fluffy. Fold in chocolate mixture and flour. Pour into ramekins and bake until edges are firm but center is gooey.",
+    },
+    {
+      id: "19",
+      title: "Mediterranean Salad",
+      description:
+        "Fresh vegetables, olives, feta cheese with olive oil dressing",
+      image:
+        "https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=600",
+      time: "15 mins",
+      servings: 3,
+      category: "Salad",
+      taste: "Tangy",
+      cuisine: "Greek",
+      chef: "Yannis Kostas",
+      ingredients:
+        "Cucumber, Cherry tomatoes, Red onion, Kalamata olives, Feta cheese, Olive oil, Lemon juice, Oregano, Salt, Pepper",
+      instructions:
+        "Chop all vegetables. Mix in olives and feta. Whisk together olive oil, lemon juice, oregano, salt and pepper. Toss salad with dressing before serving.",
+    },
+  ];
+
   const [favourites, setFavourites] = useState(() => {
     try {
       const saved = localStorage.getItem("favourites");
@@ -291,13 +368,23 @@ const RecipeContext = ({ children }) => {
     }
   });
 
-  localStorage.setItem('Recipes',JSON.stringify(data))
 
   useEffect(() => {
     const saved = localStorage.getItem("Recipes");
+    let baseData = [];
+
     if (saved) {
-      setData(JSON.parse(saved));
+      baseData = JSON.parse(saved);
     }
+
+    featuredRecipes.forEach((featured) => {
+      if (!baseData.some((r) => r.id === featured.id)) {
+        baseData.push(featured);
+      }
+    });
+
+    setData(baseData);
+    localStorage.setItem("Recipes", JSON.stringify(baseData)); // ← set once after combining
   }, []);
 
   useEffect(() => {

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Heart, Clock, Users, UtensilsCrossed } from "lucide-react"; // changed icon
+import { Heart, Clock, Users, UtensilsCrossed } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { recipeContext } from "../context/RecipeContext";
 import { toast } from "react-toastify";
+import { Skeleton } from "@mui/material";
 
 const RecipeCard = ({ recipe }) => {
   const {
@@ -15,11 +16,12 @@ const RecipeCard = ({ recipe }) => {
     time,
     servings,
     chef,
-    cuisine = "Global", 
+    cuisine = "Global",
   } = recipe;
 
   const { favourites, setFavourites } = useContext(recipeContext);
   const [isFavourite, setIsFavourite] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   useEffect(() => {
     setIsFavourite(favourites.some((f) => f.id === id));
@@ -39,20 +41,33 @@ const RecipeCard = ({ recipe }) => {
   return (
     <motion.div
       whileHover={{ y: -8 }}
-      className="bg-white rounded-2xl shadow-lg hover:shadow-xl overflow-hidden transition-shadow duration-300"
+      className="bg-white rounded-2xl shadow-lg hover:shadow-xl overflow-hidden transition-shadow duration-300 flex flex-col h-full"
     >
-      <div className="relative">
-        <img src={image} alt={title} className="w-full h-48 object-cover" />
+      <div className="relative w-full h-56">
+        {!imgLoaded && (
+          <Skeleton variant="rectangular" width="100%" height="100%" />
+        )}
+        <img
+          src={image}
+          alt={title}
+          className={`w-full h-56 object-cover absolute inset-0 transition-opacity duration-300 ${
+            imgLoaded ? "opacity-100" : "opacity-0"
+          }`}
+          onLoad={() => setImgLoaded(true)}
+        />
+
         <div className="absolute top-3 right-3">
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            onClick={toggleFavourite}
             className="bg-white rounded-full p-2 shadow-md hover:bg-red-50 cursor-pointer"
+            onClick={toggleFavourite}
           >
             <Heart
               className={`h-5 w-5 ${
-                isFavourite ? "text-red-500 fill-red-500" : "text-gray-600"
+                isFavourite
+                  ? "text-red-500 fill-red-500"
+                  : "text-gray-600 hover:text-red-500"
               }`}
             />
           </motion.button>
@@ -64,16 +79,13 @@ const RecipeCard = ({ recipe }) => {
         </div>
       </div>
 
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
-        {chef && (
-          <p className="text-sm text-green-700 font-medium mb-1">
-            👨‍🍳 Chef: {chef}
-          </p>
-        )}
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">{description}</p>
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-1">
+          {title}
+        </h3>
+        <p className="text-gray-600 text-sm mb-4 line-clamp-3">{description}</p>
 
-        <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+        <div className="flex items-center justify-between text-sm text-gray-500 mb-4 mt-auto">
           <div className="flex items-center gap-1">
             <Clock className="h-4 w-4" />
             <span>{time || "30 min"}</span>
@@ -88,7 +100,7 @@ const RecipeCard = ({ recipe }) => {
           </div>
         </div>
 
-        <Link to={`/recipes/details/${id}`} className="">
+        <Link to={`/recipes/details/${id}`} className="mt-2">
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}

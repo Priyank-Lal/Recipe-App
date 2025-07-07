@@ -19,7 +19,7 @@ const Hero = () => {
               Discover <span className="text-emerald-600">Amazing Recipes</span>
             </h1>
             <p className="text-base sm:text-lg text-gray-700 mb-6 max-w-xl">
-              Explore thousands of delicious recipes from around the world.
+              Explore delicious recipes from around the world.
               Create, share, and discover your next favorite dish.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-6">

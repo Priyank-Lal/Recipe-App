@@ -31,10 +31,9 @@ const Categories = () => {
       count: 0,
       image:
         "https://images.unsplash.com/photo-1601226809816-b8c32440158a?w=900&auto=format&fit=crop&q=60",
-      link: "/create-recipe",
+      link: "/createRecipe",
     },
   ];
-  
 
   const containerVariants = {
     hidden: { opacity: 0 },

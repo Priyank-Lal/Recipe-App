@@ -11,7 +11,7 @@ const containerVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.3,
+      duration: 0.2,
       when: "beforeChildren",
       staggerChildren: 0.15,
     },
@@ -95,15 +95,17 @@ const Recipes = () => {
 
         {/* Recipes Grid */}
         <motion.div
-          className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-4 sm:grid-cols-2 lg:grid-cols-3 gap-4"
           variants={containerVariants}
         >
           {displayedData.length > 0 ? (
-            displayedData.map((recipe) => (
-              <motion.div key={recipe.id} variants={itemVariants}>
-                <RecipeCard recipe={recipe} />
-              </motion.div>
-            ))
+            displayedData
+              .filter((recipe) => !["20", "17", "18", "19"].includes(recipe.id))
+              .map((recipe) => (
+                <motion.div key={recipe.id} variants={itemVariants}>
+                  <RecipeCard recipe={recipe} />
+                </motion.div>
+              ))
           ) : (
             <p className="text-center text-gray-500 col-span-full">
               No Recipes Found

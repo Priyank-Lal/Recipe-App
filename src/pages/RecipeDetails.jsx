@@ -55,31 +55,35 @@ const RecipeDetails = () => {
     );
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-20 bg-gradient-to-b from-white to-gray-50 h-full">
       <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12">
         {/* Image + Actions */}
         <div className="space-y-6">
           <img
             src={recipe.image}
             alt={recipe.title}
-            className="w-full h-96 object-cover rounded-3xl shadow-xl"
+            className="w-full h-128 object-cover rounded-3xl shadow-xl"
           />
           <div className="flex flex-wrap gap-3">
-            <Button
-              variant="contained"
-              onClick={() => setPopUp(true)}
-              className="!rounded-xl !px-6 !py-2"
-            >
-              Update Recipe
-            </Button>
-            <Button
-              variant="contained"
-              color="error"
-              onClick={() => setShowDeleteConfirm(true)}
-              className="!rounded-xl !px-6 !py-2"
-            >
-              Delete
-            </Button>
+            {["20", "17", "18", "19"].includes(recipe.id) == false && (
+              <>
+                <Button
+                  variant="contained"
+                  onClick={() => setPopUp(true)}
+                  className="!rounded-xl !px-6 !py-2"
+                >
+                  Update Recipe
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() => setShowDeleteConfirm(true)}
+                  className="!rounded-xl !px-6 !py-2"
+                >
+                  Delete
+                </Button>
+              </>
+            )}
             <Button
               onClick={isFavourite ? unfavouriteToggle : favouriteToggle}
               variant="outlined"
@@ -105,7 +109,7 @@ const RecipeDetails = () => {
 
           <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
             <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-emerald-600" /> {recipe.duration}
+              <Clock className="w-4 h-4 text-emerald-600" /> {recipe.time}
             </div>
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-emerald-600" />{" "}
