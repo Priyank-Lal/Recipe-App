@@ -12,8 +12,7 @@ import {
 import { recipeContext } from "../context/RecipeContext";
 import { toast } from "react-toastify";
 import imageCompression from "browser-image-compression";
-import UpdateImagePopup from "./UpdateImagePopUp";
-import { AnimatePresence, motion } from "framer-motion";
+import UpdateImagePopup from "./UpdateImagePopup";
 
 const UpdateRecipePopup = ({ visible, recipeData, data, id }) => {
   const { setData } = useContext(recipeContext);
