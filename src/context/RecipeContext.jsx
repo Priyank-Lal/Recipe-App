@@ -132,14 +132,14 @@ const RecipeContext = ({ children }) => {
   useEffect(() => {
     let hasChanges = false;
     const updatedData = [...data];
-
+    
     featuredRecipes.forEach((featured) => {
       if (!updatedData.some((r) => r.id === featured.id)) {
         updatedData.push(featured);
         hasChanges = true;
       }
     });
-
+    
     if (hasChanges) {
       setData(updatedData);
     }
