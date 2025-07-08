@@ -386,9 +386,22 @@ const RecipeContext = ({ children }) => {
   useEffect(() => {
     const loadData = () => {
       const saved = localStorage.getItem("Recipes");
-      let baseData = saved ? JSON.parse(saved) : [];
+      
+      // If no saved data exists, initialize with default recipes
+      if (!saved) {
+        const initialData = [
+          ...defaultRecipes,
+          ...featuredRecipes
+        ];
+        setData(initialData);
+        localStorage.setItem("Recipes", JSON.stringify(initialData));
+        return;
+      }
+      
+      // If saved data exists, use it and only add missing featured recipes
+      let baseData = JSON.parse(saved);
 
-      // Add featured recipes if missing
+      // Only add featured recipes that don't already exist
       featuredRecipes.forEach((featured) => {
         if (!baseData.some((r) => r.id === featured.id)) {
           baseData.push(featured);
@@ -396,7 +409,12 @@ const RecipeContext = ({ children }) => {
       });
 
       setData(baseData);
-      localStorage.setItem("Recipes", JSON.stringify(baseData));
+      
+      // Only update localStorage if we added new featured recipes
+      const originalLength = JSON.parse(saved).length;
+      if (baseData.length > originalLength) {
+        localStorage.setItem("Recipes", JSON.stringify(baseData));
+      }
     };
 
     loadData();
