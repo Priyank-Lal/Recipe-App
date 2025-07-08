@@ -366,6 +366,23 @@ const RecipeContext = ({ children }) => {
     }
   });
 
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("Recipes", JSON.stringify(data));
+    } catch (e) {
+      console.error("Error saving recipes to localStorage:", e);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("favourites", JSON.stringify(favourites));
+    } catch (e) {
+      console.error("Error saving favourites to localStorage:", e);
+    }
+  }, [favourites]);
+
   useEffect(() => {
     const loadData = () => {
       const saved = localStorage.getItem("Recipes");
@@ -385,21 +402,9 @@ const RecipeContext = ({ children }) => {
     loadData();
   }, []);
 
-  useEffect(() => {
-    try {
-      localStorage.setItem("Recipes", JSON.stringify(data));
-    } catch (e) {
-      console.error("Error saving recipes to localStorage:", e);
-    }
-  }, [data]);
+ 
 
-  useEffect(() => {
-    try {
-      localStorage.setItem("favourites", JSON.stringify(favourites));
-    } catch (e) {
-      console.error("Error saving favourites to localStorage:", e);
-    }
-  }, [favourites]);
+
 
   return (
     <recipeContext.Provider
