@@ -57,7 +57,7 @@ const RecipeDetails = () => {
   return (
     <section className="py-20 bg-gradient-to-b from-white to-gray-50 h-full">
       <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12">
-        {/* Image + Actions */}
+
         <div className="space-y-6">
           <img
             loading="lazy"
@@ -153,7 +153,6 @@ const RecipeDetails = () => {
         </div>
       </div>
 
-      {/* Update Recipe Modal */}
       <AnimatePresence>
         {popUp && (
           <motion.div
