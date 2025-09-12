@@ -6,6 +6,7 @@ const MyComponent = () => {
 };
 // New Comment
 // New Comment-2
+// New Commnet-3
 // Doesn't re-render if parent re-renders, unless nothing inside it changes
 export default memo(MyComponent);
 
