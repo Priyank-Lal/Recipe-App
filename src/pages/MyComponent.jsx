@@ -13,6 +13,7 @@ const MyComponent = () => {
 // New Commnet-7
 // New Commnet-8
 // New Comment-9
+// New Comment-10
 // Doesn't re-render if parent re-renders, unless nothing inside it changes
 export default memo(MyComponent);
 
